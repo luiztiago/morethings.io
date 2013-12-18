@@ -20,6 +20,25 @@
       </header>
       <div class="entry-content" itemprop="description">
         {{ content }}
+
+        {% if post.related %}
+          <aside class="fonte">
+            <h3>Referência</h3>
+            <ul class="entry-related">
+              {% for rel in post.related %}
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="{{ rel.url }}" alt="{{ rel.title }}" title="{{ rel.title }}">
+                  <span itemprop="name">{{ rel.title }}</span>
+                </a>
+                {% if rel.from %}
+                  <span class="comment">// {{ rel.from }}</span>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+          </aside>
+        {% endif %}
+
       </div><!-- /.entry-content -->
     </div><!-- /.entry-wrapper -->
   </article>
