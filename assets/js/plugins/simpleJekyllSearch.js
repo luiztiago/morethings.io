@@ -9,7 +9,7 @@
     $.fn.simpleJekyllSearch = function(options) {
         var settings = $.extend({
             jsonFile        : '/search.json',
-            jsonFormat      : 'title,category,desc,url,date,shortdate',
+            jsonFormat      : 'title,category,desc,url,date,shortdate,content',
             template        : '<a href="{url}" title="{title}">{title}</a>',
             searchResults   : '.results',
             searchResultsTitle   : '<h4>Search results</h4>',
@@ -18,7 +18,7 @@
         }, options);
 
         var properties = settings.jsonFormat.split(',');
-        
+
         var jsonData = [],
             origThis = this,
             searchResults = $(settings.searchResults);
