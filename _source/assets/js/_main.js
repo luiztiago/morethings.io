@@ -24,6 +24,33 @@ $('#site-nav').click(function(event){
 });
 
 // FitVids options
-$(function() {
+$(document).ready(function() {
 	$("article").fitVids();
+
+  $('.search-field').simpleJekyllSearch({
+    jsonFile      : site.url + '/search.json',
+    searchResults : '.search-results',
+    template      : '<li><article><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></article></li>',
+    noResults     : '<p>Nothing found.</p>'
+  });
+
+  var bs = {
+    close: $(".icon-remove-sign"),
+    searchform: $(".search-form"),
+    canvas: $("body"),
+    dothis: $('.dosearch')
+  };
+
+  bs.dothis.on('click', function() {
+    $('.search-wrapper').css({ display: "block" });
+    bs.searchform.toggleClass('active');
+    bs.searchform.find('input').focus();
+    bs.canvas.toggleClass('search-overlay');
+  });
+
+  bs.close.on('click', function() {
+    $('.search-wrapper').removeAttr( 'style' );
+    bs.searchform.toggleClass('active');
+    bs.canvas.removeClass('search-overlay');
+  });
 });

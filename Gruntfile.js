@@ -9,9 +9,9 @@ module.exports = function(grunt) {
       },
       all: [
         'Gruntfile.js',
-        'assets/js/*.js',
-        'assets/js/plugins/*.js',
-        '!assets/js/scripts.min.js'
+        '_source/assets/js/*.js',
+        '_source/assets/js/plugins/*.js',
+        '!_source/assets/js/scripts.min.js'
       ]
     },
     recess: {
@@ -21,8 +21,8 @@ module.exports = function(grunt) {
           compress: true
         },
         files: {
-          'assets/css/main.min.css': [
-            'assets/less/main.less'
+          '_site/assets/css/main.min.css': [
+            '_source/assets/less/main.less'
           ]
         }
       }
@@ -30,9 +30,9 @@ module.exports = function(grunt) {
     uglify: {
       dist: {
         files: {
-          'assets/js/scripts.min.js': [
-            'assets/js/plugins/*.js',
-            'assets/js/_*.js'
+          '_site/assets/js/scripts.min.js': [
+            '_source/assets/js/plugins/*.js',
+            '_source/assets/js/_*.js'
           ]
         }
       }
@@ -45,9 +45,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: 'images/',
+          cwd: '_source/images/',
           src: '{,*/}*.{png,jpg,jpeg}',
-          dest: 'images/'
+          dest: '_site/images/'
         }]
       }
     },
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
     watch: {
       less: {
         files: [
-          'assets/less/*.less'
+          '_source/assets/less/*.less'
         ],
         tasks: ['recess']
       },
@@ -79,14 +79,14 @@ module.exports = function(grunt) {
         tasks: ['uglify']
       },
       jekyll: {
-        files: ['_posts/*.markdown', '_layouts/*.html', '_includes/*.html', 'index.html', '_config.yml'],
+        files: ['_source/_posts/*.markdown', '_source/_layouts/*.html', '_source/_includes/*.html', '_source/index.html', '_config.yml'],
         tasks: ['jekyll:serve']
       }
     },
     clean: {
       dist: [
-        'assets/css/main.min.css',
-        'assets/js/scripts.min.js'
+        '_site/assets/css/main.min.css',
+        '_site/assets/js/scripts.min.js'
       ]
     }
   });
