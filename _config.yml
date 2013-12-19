@@ -3,7 +3,7 @@ description:      More things about Front-end Development
 logo:             site-logo.png
 source:           _source
 disqus_shortname: morethingsio
-search:           true
+search:           false
 #Change url to your domain. Leave localhost server or blank when working locally.
 #url:              http://www.morethings.io
 url:              http://localhost:4000
