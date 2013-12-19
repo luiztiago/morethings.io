@@ -79,7 +79,7 @@ module.exports = function(grunt) {
         tasks: ['uglify']
       },
       jekyll: {
-        files: ['_posts/*.markdown', '_layouts/*.html', '_includes/*.html', 'index.html'],
+        files: ['_posts/*.markdown', '_layouts/*.html', '_includes/*.html', 'index.html', '_config.yml'],
         tasks: ['jekyll:serve']
       }
     },

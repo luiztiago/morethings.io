@@ -1,7 +1,7 @@
 title:            morethings.io
 description:      More things about Front-end Development
 logo:             site-logo.png
-disqus_shortname: luiztiago
+disqus_shortname: morethingsio
 search:           true
 #Change url to your domain. Leave localhost server or blank when working locally.
 url:              http://localhost:4000
@@ -24,8 +24,8 @@ owner:
   google_plus:
 
 # Analytics and webmaster tools stuff goes here
-google_analytics:
-google_verify:
+google_analytics: UA-31914656-3
+google_verify:    uvPVqBq23eyYbMxC3O2qGYrJOJCSY7n6QNcJZcYzpyw
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:
 
