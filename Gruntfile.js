@@ -2,6 +2,7 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -50,14 +51,18 @@ module.exports = function(grunt) {
         }]
       }
     },
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: 'images/',
-          src: '{,*/}*.svg',
-          dest: 'images/'
-        }]
+    jekyll: {
+      options: {
+        auto: true,
+        serve: true,
+        port: 4000
+      },
+      serve: {
+        serve: true,
+        port: 4000
+      },
+      build: {
+        serve: false
       }
     },
     watch: {
@@ -72,6 +77,10 @@ module.exports = function(grunt) {
           '<%= jshint.all %>'
         ],
         tasks: ['uglify']
+      },
+      jekyll: {
+        files: ['_posts/*.markdown', '_layouts/*.html', '_includes/*.html', 'index.html'],
+        tasks: ['jekyll:serve']
       }
     },
     clean: {
@@ -83,24 +92,17 @@ module.exports = function(grunt) {
   });
 
   // Load tasks
+  grunt.loadNpmTasks('grunt-jekyll');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-svgmin');
 
   // Register tasks
-  grunt.registerTask('default', [
-    'clean',
-    'recess',
-    'uglify',
-    'imagemin',
-    'svgmin'
-  ]);
-  grunt.registerTask('dev', [
-    'watch'
-  ]);
+  grunt.registerTask('default', ['clean','recess','uglify','imagemin','jekyll:serve']);
+  grunt.registerTask('build', ['clean','recess','uglify','imagemin','jekyll:build']);
+  grunt.registerTask('dev', ['watch','jekyll:serve']);
 
 };
