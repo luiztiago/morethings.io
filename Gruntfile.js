@@ -53,16 +53,19 @@ module.exports = function(grunt) {
     },
     jekyll: {
       options: {
-        auto: true,
-        serve: true,
-        port: 4000
+        auto: true
       },
       serve: {
-        serve: true,
-        port: 4000
+        options: {
+          host: 'http://localhost',
+          serve: true,
+          port: 4000
+        }
       },
       build: {
-        serve: false
+        options: {
+          serve: false
+        }
       }
     },
     watch: {
@@ -103,6 +106,5 @@ module.exports = function(grunt) {
   // Register tasks
   grunt.registerTask('default', ['clean','recess','uglify','imagemin','jekyll:serve']);
   grunt.registerTask('build', ['clean','recess','uglify','imagemin','jekyll:build']);
-  grunt.registerTask('dev', ['watch','jekyll:serve']);
 
 };
