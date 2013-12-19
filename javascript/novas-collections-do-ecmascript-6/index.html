@@ -1,0 +1,309 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Novas collections do EcmaScript 6 &#8211; morethings.io</title>
+<meta name="description" content="More things about Front-end Development">
+<meta name="keywords" content="">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.morethings.io/images/the-future-is-here.jpg">
+
+<meta name="twitter:title" content="Novas collections do EcmaScript 6">
+<meta name="twitter:description" content="More things about Front-end Development">
+<meta name="twitter:creator" content="@morethings">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Novas collections do EcmaScript 6">
+<meta property="og:description" content="More things about Front-end Development">
+<meta property="og:url" content="http://www.morethings.io/javascript/novas-collections-do-ecmascript-6">
+<meta property="og:site_name" content="morethings.io">
+
+<meta name="google-site-verification" content="uvPVqBq23eyYbMxC3O2qGYrJOJCSY7n6QNcJZcYzpyw">
+
+
+
+<link rel="canonical" href="http://www.morethings.io/javascript/novas-collections-do-ecmascript-6">
+<link href="http://www.morethings.io/feed.xml" type="application/atom+xml" rel="alternate" title="morethings.io Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://www.morethings.io/assets/css/main.min.css">
+<!-- Webfonts -->
+<script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://www.morethings.io/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://www.morethings.io/images/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://www.morethings.io/images/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://www.morethings.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.morethings.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.morethings.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.morethings.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post" itemscope itemtype="http://schema.org/WebPage">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	    <ul>
+	        <li><a href="http://www.morethings.io" title="Inicio">Inicio</a></li>
+	        
+			<li>
+				
+					<a href="http://www.morethings.io/about">Sobre</a>
+				
+			</li>
+	        
+			<li>
+				
+					<a href="http://www.morethings.io/posts">Posts</a>
+				
+			</li>
+	        
+	        <li><a href="http://www.morethings.io/feed.xml" title="Atom/RSS feed">Feed</a></li>
+	        <li class="dosearch">Busca</li>
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<div class="search-wrapper">
+	<div class="search-form">
+		<input type="text" class="search-field" placeholder="Search...">
+		<i class="icon-remove-sign icon-2x"></i>
+		<ul class="search-results post-list"></ul><!-- /.search-results -->
+	</div><!-- /.search-form -->
+</div><!-- ./search-wrapper -->
+
+<header class="masthead" itemscope itemtype="http://schema.org/Organization">
+	<div class="wrap">
+		<h1 class="site-title animated fadeIn"><a href="http://www.morethings.io">morethings.io</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">More things about Front-end Development</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <img src="http://www.morethings.io/images/the-future-is-here.jpg" class="entry-feature-image" alt="Novas collections do EcmaScript 6" itemprop="image"><p class="image-credit">Foto: <a href="http://www.flickr.com/photos/gwire/3397651143/">gwire</a>
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <span class="entry-tags"></span>
+        
+          <h1 class="entry-title" itemprop="headline">Novas collections do EcmaScript 6</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        <img src="http://www.morethings.io/images/bio-photo.jpg" alt="Luiz Tiago photo" class="author-photo">
+        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.morethings.io/about" title="About Luiz Tiago" itemprop="url"><i class="icon-user"></i> Luiz Tiago</a></span></span>
+        <span class="entry-date date published"><time datetime="2013-12-19T10:00:00Z" itemprop="datePublished"><i class="icon-calendar-empty"></i> December 19, 2013</time></span>
+        
+        <span class="entry-comments"><i class="icon-comment-alt"></i> <a href="#disqus_thread">Comment</a></span>
+      </footer>
+      <div class="entry-content" itemprop="description">
+        <p>Para quem estava no <a href="http://frontinrecife.com.br">Front in Recife</a>, e acompanhou a minha palestra junto com <a href="http://github.com/guilhermefarias">Guilherme Farias</a> ja teve um <em>spoiler</em> do post, visto que apresentamos la um pouco sobre as novas <em>collections</em>, bem como outras novidades do ECMAScript 6.</p>
+
+<h2 id="o-que-so-collections">O que são <em>collections</em>?</h2>
+
+<p>Em toda a história do JavaScript, houve apenas um tipo de <em>collection</em> representado pelo <code>Array</code>. Em outras linguagens como Python, Ruby e Java, já existem outras collections, e com a especificação do ECMAScript 6, também poderemos usá-las. Os novos tipos permitem o armazenamento melhor e mais eficiente de dados.</p>
+
+<h3 id="sets">Sets</h3>
+
+<p><em>Sets</em> são listas ordenadas de valores que não permite valores duplicados. Normalmente você não acessa itens que foram setados, como normalmente fazemos com Arrays, ao invés disso, é mais comum verificar o conjunto para ver se um valor está presente.</p>
+
+<p>Permite-se adicionar valores usando o método <code>add()</code> e verificar quantos itens estão no <em>set</em> usando <code>size()</code>.</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">();</span>
+
+<span class="nx">items</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="nx">items</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;5&quot;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span> <span class="c1">// 2</span>
+
+<span class="nx">items</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// ja existe, sera ignorado</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span> <span class="c1">// 2</span>
+</code></pre></div>
+
+<p>Pode-se verificar se algum item está no <em>set</em> usando o método <code>has()</code>. Para remover algum valor, basta usar o método <code>remove()</code>.</p>
+
+<div class="highlight"><pre><code class="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span> <span class="c1">// true</span>
+
+<span class="nx">items</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">items</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span> <span class="c1">// false</span>
+</code></pre></div>
+
+<h3 id="maps">Maps</h3>
+
+<p>É bem parecido com os <em>sets</em>, mas a ideia básica do map é que possui uma chave única, que você pode setar ou verificar a qualquer momento usando esta chave. Em JavaScript, os desenvolvedores tradicionalmente usam objetos regulares como Maps. Inclusive o próprio <code>JSON</code> é baseado neste conceito que representa pares de chave/valor.</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">();</span>
+<span class="nx">map</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;cor&quot;</span><span class="p">,</span> <span class="s2">&quot;verde&quot;</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">map</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="s2">&quot;cor&quot;</span><span class="p">));</span>   <span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">map</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;cor&quot;</span><span class="p">));</span>   <span class="c1">// &quot;verde&quot;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">map</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span>       <span class="c1">// 1</span>
+
+<span class="nx">map</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">&quot;cor&quot;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">map</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="s2">&quot;cor&quot;</span><span class="p">));</span>   <span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">map</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;cor&quot;</span><span class="p">));</span>   <span class="c1">// undefined</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">map</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span>       <span class="c1">// 0</span>
+</code></pre></div>
+
+<h3 id="weakmaps">WeakMaps</h3>
+
+<p>Bem parecido com os <em>maps</em>, os <em>weakmaps</em> também são baseados em chave/valor. Porém, a chave não pode ser um tipo primitivo (<em>String</em>, por exemplo). Ao invés disso, a chave deve ser um objeto. Isto pode parecer estranho, mas isto é bastante útil em algumas situações.</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WeakMap</span><span class="p">(),</span>
+    <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;.element&quot;</span><span class="p">);</span>
+
+<span class="nx">map</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="s2">&quot;valor qualquer&quot;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">map</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// &quot;valor qualquer&quot;</span>
+
+<span class="nx">element</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+<span class="nx">element</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="nx">value</span> <span class="o">=</span> <span class="nx">map</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// undefined</span>
+</code></pre></div>
+
+        
+          <aside class="entry-related">
+            <h4>Referências</h4>
+            <ul>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://wiki.ecmascript.org/doku.php?id=harmony:simple_maps_and_sets" alt="Simple Maps and Sets" title="Simple Maps and Sets">Simple Maps and Sets</a>
+                
+                  - ES Wiki
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects" alt="Global Objects Reference" title="Global Objects Reference">Global Objects Reference</a>
+                
+                  - Mozilla Developer Network
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://www.nczonline.net/blog/2012/09/25/ecmascript-6-collections-part-1-sets/" alt="ECMAScript 6 collections, Part 1 Sets" title="ECMAScript 6 collections, Part 1 Sets">ECMAScript 6 collections, Part 1 Sets</a>
+                
+                  - NCZOnline
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://www.nczonline.net/blog/2012/10/09/ecmascript-6-collections-part-2-maps/" alt="ECMAScript 6 collections, Part 2 Maps" title="ECMAScript 6 collections, Part 2 Maps">ECMAScript 6 collections, Part 2 Maps</a>
+                
+                  - NCZOnline
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://www.nczonline.net/blog/2012/11/06/ecmascript-6-collections-part-3-weakmaps/" alt="ECMAScript 6 collections, Part 3 WeakMaps" title="ECMAScript 6 collections, Part 3 WeakMaps">ECMAScript 6 collections, Part 3 WeakMaps</a>
+                
+                  - NCZOnline
+                
+              </li>
+              
+            </ul>
+          </aside>
+        
+        <div id="disqus_thread"></div><!-- /#disqus_thread -->
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2013 - morethings.io</span>
+<div class="social-icons">
+	<a href="http://twitter.com/morethings" title="Luiz Tiago on Twitter" target="_blank"><i class="icon-twitter icon-2x"></i></a>
+	<a href="http://facebook.com/morethings.io" title="Luiz Tiago on Facebook" target="_blank"><i class="icon-facebook icon-2x"></i></a>
+	
+	
+	
+	
+	
+	<a href="http://github.com/luiztiago/morethings.io" title="Luiz Tiago on Github" target="_blank"><i class="icon-github icon-2x"></i></a>
+	
+</div><!-- /.social-icons -->
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://www.morethings.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://www.morethings.io/assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var site = {
+    url: http://www.morethings.io
+  };
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31914656-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'morethingsio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</body>
+</html>
