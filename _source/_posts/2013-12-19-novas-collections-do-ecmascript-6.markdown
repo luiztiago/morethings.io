@@ -24,6 +24,7 @@ related:
     url: http://www.nczonline.net/blog/2012/11/06/ecmascript-6-collections-part-3-weakmaps/
     from: NCZOnline
 comments: true
+description: "Na história do JavaScript, houve apenas um tipo de collection representado pelo Array. Com a especificação do ECMAScript 6, poderemos usar outras collections. Os novos tipos permitem o armazenamento melhor e mais eficiente de dados."
 ---
 
 Para quem estava no [Front in Recife](http://frontinrecife.com.br), e acompanhou a minha palestra junto com [Guilherme Farias](http://github.com/guilhermefarias) ja teve um *spoiler* do post, visto que apresentamos la um pouco sobre as novas *collections*, bem como outras novidades do ECMAScript 6.
