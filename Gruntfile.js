@@ -57,7 +57,6 @@ module.exports = function(grunt) {
       },
       serve: {
         options: {
-          host: 'http://localhost',
           serve: true,
           port: 4000
         }
