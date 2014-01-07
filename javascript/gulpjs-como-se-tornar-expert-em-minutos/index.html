@@ -1,0 +1,376 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Gulp JS: como se tornar Expert em minutos &#8211; morethings.io</title>
+<meta name="description" content="Gulp é um automatizador de tarefas escrito em JavaScript. Senti algumas vantagens interessantes, sendo mais simples e com menos configurações necessárias no código das `tasks`. O Gulp file também aparenta ter um entendimento mais fácil, e consequentemente mais rápido.">
+<meta name="keywords" content="">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://morethings.io/images/gulpjs.png">
+
+<meta name="twitter:title" content="Gulp JS: como se tornar Expert em minutos">
+<meta name="twitter:description" content="Gulp é um automatizador de tarefas escrito em JavaScript. Senti algumas vantagens interessantes, sendo mais simples e com menos configurações necessárias no código das `tasks`. O Gulp file também aparenta ter um entendimento mais fácil, e consequentemente mais rápido.">
+<meta name="twitter:creator" content="@morethingsio">
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gulp JS: como se tornar Expert em minutos">
+<meta property="og:description" content="Gulp é um automatizador de tarefas escrito em JavaScript. Senti algumas vantagens interessantes, sendo mais simples e com menos configurações necessárias no código das `tasks`. O Gulp file também aparenta ter um entendimento mais fácil, e consequentemente mais rápido.">
+<meta property="og:url" content="http://morethings.io/javascript/gulpjs-como-se-tornar-expert-em-minutos">
+<meta property="og:site_name" content="morethings.io">
+<meta property="og:image" content="http://morethings.io/images/mt.png">
+<meta property="og:type" content="website">
+
+<meta name="google-site-verification" content="uvPVqBq23eyYbMxC3O2qGYrJOJCSY7n6QNcJZcYzpyw">
+
+
+<link rel="canonical" href="http://morethings.io/javascript/gulpjs-como-se-tornar-expert-em-minutos">
+<link href="http://morethings.io/feed.xml" type="application/atom+xml" rel="alternate" title="morethings.io Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://morethings.io/assets/css/main.min.css">
+<!-- Webfonts -->
+<script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://morethings.io/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://morethings.io/images/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://morethings.io/images/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://morethings.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://morethings.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://morethings.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://morethings.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post" itemscope itemtype="http://schema.org/WebPage">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	    <ul>
+	        <li><a href="http://morethings.io" title="Inicio">Inicio</a></li>
+	        
+			<li>
+				
+					<a href="http://morethings.io/about">Sobre</a>
+				
+			</li>
+	        
+			<li>
+				
+					<a href="http://morethings.io/posts">Posts</a>
+				
+			</li>
+	        
+	        <li><a href="http://morethings.io/feed.xml" title="Atom/RSS feed">Feed</a></li>
+	        
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+
+
+<header class="masthead" itemscope itemtype="http://schema.org/Organization">
+	<div class="wrap">
+		<h1 class="site-title animated fadeIn"><a href="http://morethings.io">morethings.io</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">More things about Front-end Development</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <img src="http://morethings.io/images/gulpjs.png" class="entry-feature-image" alt="Gulp JS: como se tornar Expert em minutos" itemprop="image">
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <span class="entry-tags"></span>
+        
+          <h1 class="entry-title" itemprop="headline">Gulp JS: como se tornar Expert em minutos</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        <img src="http://morethings.io/images/bio-photo.jpg" alt="Luiz Tiago photo" class="author-photo">
+        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://morethings.io/about" title="About Luiz Tiago" itemprop="url"><i class="icon-user"></i> Luiz Tiago</a></span></span>
+        <span class="entry-date date published"><time datetime="2014-01-07T20:00:00Z" itemprop="datePublished"><i class="icon-calendar-empty"></i> January 07, 2014</time></span>
+        
+        <span class="entry-comments"><i class="icon-comment-alt"></i> <a href="#disqus_thread">Comment</a></span>
+      </footer>
+      <div class="entry-content" itemprop="description">
+        <p>Pra começar bem o ano, já tivemos o anúncio do <strong>Gulp JS</strong>. Gulp é um automatizador de tarefas escrito em JavaScript. Ele é uma alternativa para o, atualmente mais popular, <strong>GruntJS</strong>. Automatizar tarefas não é uma novidade. Algumas figurinhas já são bem conhecidas, como o <code>ant</code> para Java, <code>rake</code> para Ruby, entre outras. Mas todas seguem com um grande objetivo em comum: minimizar trabalho repetitivo. E pra manter a qualidade dos nossos projetos, não podemos deixar de estudar as opções que temos.</p>
+
+<p>Comparado com o Grunt, senti algumas vantagens interessantes, sendo mais simples e com menos configurações necessárias no código das <code>tasks</code>. O <em>Gulpfile</em> também aparenta ter um entendimento mais fácil, e consequentemente mais rápido.</p>
+
+<p>E no dia 3 de Janeiro, já tivemos o seguinte anúncio no Twitter oficial:</p>
+
+<p><img src="http://morethings.io/images/twitter-gulpjs-100-plugins.png" alt="Twitter @gulpjs - We have now 100 plugins!" /></p>
+
+<p>A velocidade que está sendo feito os plugins é incrível. É um projeto muito recente e já tem muita contribuição da comunidade para conseguir avançar e nos ajudar cada vez mais em nossos projetos. Sem muito blá blá blá, vamos à pratica para ver sua simplicidade.</p>
+
+<p>Como base, segue abaixo um simples <strong>Gruntfile</strong> (script para <em>Grunt</em>), usado para rodar as seguintes tarefas:</p>
+
+<ol>
+  <li>Rodar os testes</li>
+  <li>JSHint nos arquivos JavaScript</li>
+  <li>Concat nos arquivos JavaScript</li>
+  <li>Minificar os arquivos</li>
+  <li>Rodar novamente sempre que os arquivos forem alterados (watch)</li>
+</ol>
+
+<div class="highlight"><pre><code class="js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+    <span class="nx">pkg</span><span class="o">:</span> <span class="nx">grunt</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">readJSON</span><span class="p">(</span><span class="s1">&#39;package.json&#39;</span><span class="p">),</span>
+    <span class="nx">concat</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;;&#39;</span>
+      <span class="p">},</span>
+      <span class="nx">dist</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;src/**/*.js&#39;</span><span class="p">],</span>
+        <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;dist/&lt;%= pkg.name %&gt;.js&#39;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">uglify</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">banner</span><span class="o">:</span> <span class="s1">&#39;/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today(&quot;dd-mm-yyyy&quot;) %&gt; */\n&#39;</span>
+      <span class="p">},</span>
+      <span class="nx">dist</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">files</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s1">&#39;dist/&lt;%= pkg.name %&gt;.min.js&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;&lt;%= concat.dist.dest %&gt;&#39;</span><span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">qunit</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">files</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;test/**/*.html&#39;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nx">jshint</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">files</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;gruntfile.js&#39;</span><span class="p">,</span> <span class="s1">&#39;src/**/*.js&#39;</span><span class="p">,</span> <span class="s1">&#39;test/**/*.js&#39;</span><span class="p">],</span>
+      <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+        <span class="c1">// options here to override JSHint defaults</span>
+        <span class="nx">globals</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">jQuery</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="nx">console</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="nx">module</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="nb">document</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">watch</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">files</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;&lt;%= jshint.files %&gt;&#39;</span><span class="p">],</span>
+      <span class="nx">tasks</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;jshint&#39;</span><span class="p">,</span> <span class="s1">&#39;qunit&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-uglify&#39;</span><span class="p">);</span>
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-jshint&#39;</span><span class="p">);</span>
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-qunit&#39;</span><span class="p">);</span>
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-watch&#39;</span><span class="p">);</span>
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-contrib-concat&#39;</span><span class="p">);</span>
+
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;jshint&#39;</span><span class="p">,</span> <span class="s1">&#39;qunit&#39;</span><span class="p">]);</span>
+
+  <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;jshint&#39;</span><span class="p">,</span> <span class="s1">&#39;qunit&#39;</span><span class="p">,</span> <span class="s1">&#39;concat&#39;</span><span class="p">,</span> <span class="s1">&#39;uglify&#39;</span><span class="p">]);</span>
+
+<span class="p">};</span>
+</code></pre></div>
+
+<p>Segue abaixo um exemplo do <strong>gulpfile.js</strong>, similar ao Gruntfile acima, escrito para o <strong>GulpJS</strong> :)</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gulp&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">pkg</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./package.json&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">concat</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gulp-concat&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">minify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gulp-minify&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">jshint</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gulp-jshint&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">spawn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">).</span><span class="nx">spawn</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">scriptFiles</span> <span class="o">=</span> <span class="s1">&#39;./src/**/*.js&#39;</span><span class="p">;</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">&#39;compile&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="c1">// concat all scripts, minify, and output</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="nx">scriptFiles</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">concat</span><span class="p">({</span><span class="nx">fileName</span><span class="o">:</span> <span class="nx">pkg</span><span class="p">.</span><span class="nx">name</span><span class="o">+</span><span class="s2">&quot;.js&quot;</span><span class="p">})</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">minify</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">&#39;./dist/&#39;</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="c1">// lint our scripts</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="nx">scriptFiles</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">jshint</span><span class="p">());</span>
+</code></pre></div>
+
+<h2 id="quais-as-diferenas">Quais as diferenças?</h2>
+
+<ul>
+  <li>Você utiliza o padrão do Gulp para fazer as tarefas básicas</li>
+  <li>Plugins são simples e fazem apenas uma coisa. A maioria são apenas uma função com 20 linhas em média</li>
+  <li>As tarefas são executadas de forma encadeada</li>
+  <li>O código é bem menor e a curva de aprendizado também :)</li>
+  <li>O Gulp não faz nada, apenas fornece um sistema básico de tarefas</li>
+</ul>
+
+<h2 id="learning">Learning…</h2>
+
+<p>Como aprender Grup? São 5 tarefas básicas que você precisa entender. São elas:</p>
+
+<h3 id="gulptaskname-fn">gulp.task(name, fn)</h3>
+
+<p>Isto registra uma função com um nome.</p>
+
+<p>Você pode opcionalmente especificar algumas dependências se outras tarefas precisam rodar antes.</p>
+
+<h3 id="gulpruntasks">gulp.run(tasks…)</h3>
+
+<p>Roda todas as tarefas de forma encadeada</p>
+
+<h3 id="gulpwatchglob-fn">gulp.watch(glob, fn)</h3>
+
+<p>Roda a função quando o arquivo tiver alterações</p>
+
+<p>(*) Incluido no core para simplificar</p>
+
+<h3 id="gulpsrcglob">gulp.src(glob)</h3>
+
+<p>Os arquivos que serão lidos no fluxo, e inicia a emissão do arquivo correspondente, podendo ser usado em outros fluxos.</p>
+
+<h3 id="gulpdestfolder">gulp.dest(folder)</h3>
+
+<p>Isto irá retornar o resultado do fluxo, e será salvo no destino (similar ao writeFile() do FileSystem, para quem já está acostumado com Node).</p>
+
+<p>Pois é. Estes são os 5 métodos padrões do Gulp. E todos eles são usados no código de exemplo acima para facilitar o entendimento.</p>
+
+<h2 id="parabns">Parabéns!</h2>
+
+<p>Como a própria documentação diz, você agora tornou-se expert em Gulp! :)</p>
+
+        
+          <aside class="entry-related">
+            <h4>Referências</h4>
+            <ul>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://gulpjs.com/" alt="Site Oficial" title="Site Oficial">Site Oficial</a>
+                
+                  - Gulp JS
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://www.100percentjs.com/just-like-grunt-gulp-browserify-now/?utm_content=buffere74f0&utm_source=buffer&utm_medium=twitter&utm_campaign=Buffer" alt="And just like that Grunt and RequireJS are out, it’s all about Gulp and Browserify now" title="And just like that Grunt and RequireJS are out, it’s all about Gulp and Browserify now">And just like that Grunt and RequireJS are out, it’s all about Gulp and Browserify now</a>
+                
+                  - 100PercentJS
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="https://github.com/gulpjs/gulp/blob/master/README.md#gulp---" alt="README File" title="README File">README File</a>
+                
+                  - Github Gulp
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://slid.es/contra/gulp" alt="Gulp - Slides from Eric Schoffstall" title="Gulp - Slides from Eric Schoffstall">Gulp - Slides from Eric Schoffstall</a>
+                
+                  - Eric Schoffstall
+                
+              </li>
+              
+            </ul>
+          </aside>
+        
+        <div id="disqus_thread"></div><!-- /#disqus_thread -->
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://morethings.io/javascript/novas-collections-do-ecmascript-6" class="btn" title="Novas collections do EcmaScript 6">Previous article</a>
+      
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2014 - morethings.io</span>
+<div class="social-icons">
+	<a href="http://twitter.com/morethingsio" title="Luiz Tiago on Twitter" target="_blank"><i class="icon-twitter icon-2x"></i></a>
+	<a href="http://facebook.com/morethings.io" title="Luiz Tiago on Facebook" target="_blank"><i class="icon-facebook icon-2x"></i></a>
+	
+	
+	
+	
+	
+	<a href="http://github.com/luiztiago/morethings.io" title="Luiz Tiago on Github" target="_blank"><i class="icon-github icon-2x"></i></a>
+	
+</div><!-- /.social-icons -->
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://morethings.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://morethings.io/assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31914656-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'morethingsio'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</body>
+</html>
