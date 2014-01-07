@@ -133,7 +133,7 @@ gulp.task('test', function(){
 
 ## Learning...
 
-Como aprender Grup? São 5 tarefas básicas que você precisa entender. São elas:
+Como aprender Gulp? São 5 tarefas básicas que você precisa entender. São elas:
 
 ### gulp.task(name, fn)
 
