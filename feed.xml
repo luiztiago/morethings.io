@@ -4,13 +4,173 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://morethings.io/feed.xml" />
 <link rel="alternate" type="text/html" href="http://morethings.io" />
-<updated>2013-12-20T14:30:57-03:00</updated>
+<updated>2014-01-07T19:09:23-03:00</updated>
 <id>http://morethings.io/</id>
 <author>
   <name>Luiz Tiago</name>
   <uri>http://morethings.io/</uri>
   <email>luiztiago@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Gulp JS: como se tornar Expert em minutos]]></title>
+  <link>http://morethings.io/javascript/gulpjs-como-se-tornar-expert-em-minutos</link>
+  <id>http://morethings.io/javascript/gulpjs-como-se-tornar-expert-em-minutos</id>
+  <published>2014-01-07T20:00:00Z</published>
+  <updated>2014-01-07T20:00:00Z</updated>
+  <author>
+    <name>Luiz Tiago</name>
+    <uri>http://morethings.io</uri>
+    <email>luiztiago@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;Pra começar bem o ano, já tivemos o anúncio do &lt;strong&gt;Gulp JS&lt;/strong&gt;. Gulp é um automatizador de tarefas escrito em JavaScript. Ele é uma alternativa para o, atualmente mais popular, &lt;strong&gt;GruntJS&lt;/strong&gt;. Automatizar tarefas não é uma novidade. Algumas figurinhas já são bem conhecidas, como o &lt;code&gt;ant&lt;/code&gt; para Java, &lt;code&gt;rake&lt;/code&gt; para Ruby, entre outras. Mas todas seguem com um grande objetivo em comum: minimizar trabalho repetitivo. E pra manter a qualidade dos nossos projetos, não podemos deixar de estudar as opções que temos.&lt;/p&gt;
+
+&lt;p&gt;Comparado com o Grunt, senti algumas vantagens interessantes, sendo mais simples e com menos configurações necessárias no código das &lt;code&gt;tasks&lt;/code&gt;. O &lt;em&gt;Gulpfile&lt;/em&gt; também aparenta ter um entendimento mais fácil, e consequentemente mais rápido.&lt;/p&gt;
+
+&lt;p&gt;E no dia 3 de Janeiro, já tivemos o seguinte anúncio no Twitter oficial:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://morethings.io/images/twitter-gulpjs-100-plugins.png&quot; alt=&quot;Twitter @gulpjs - We have now 100 plugins!&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A velocidade que está sendo feito os plugins é incrível. É um projeto muito recente e já tem muita contribuição da comunidade para conseguir avançar e nos ajudar cada vez mais em nossos projetos. Sem muito blá blá blá, vamos à pratica para ver sua simplicidade.&lt;/p&gt;
+
+&lt;p&gt;Como base, segue abaixo um simples &lt;strong&gt;Gruntfile&lt;/strong&gt; (script para &lt;em&gt;Grunt&lt;/em&gt;), usado para rodar as seguintes tarefas:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Rodar os testes&lt;/li&gt;
+  &lt;li&gt;JSHint nos arquivos JavaScript&lt;/li&gt;
+  &lt;li&gt;Concat nos arquivos JavaScript&lt;/li&gt;
+  &lt;li&gt;Minificar os arquivos&lt;/li&gt;
+  &lt;li&gt;Rodar novamente sempre que os arquivos forem alterados (watch)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;pkg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readJSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;package.json&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;concat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;separator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;;&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;dist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;src/**/*.js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;dist/&amp;lt;%= pkg.name %&amp;gt;.js&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;uglify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;banner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/*! &amp;lt;%= pkg.name %&amp;gt; &amp;lt;%= grunt.template.today(&amp;quot;dd-mm-yyyy&amp;quot;) %&amp;gt; */\n&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;dist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;s1&quot;&gt;&amp;#39;dist/&amp;lt;%= pkg.name %&amp;gt;.min.js&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;lt;%= concat.dist.dest %&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;qunit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;test/**/*.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;jshint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gruntfile.js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;src/**/*.js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;test/**/*.js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// options here to override JSHint defaults&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;globals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;jQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;watch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;lt;%= jshint.files %&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;tasks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;jshint&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;qunit&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadNpmTasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;grunt-contrib-uglify&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadNpmTasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;grunt-contrib-jshint&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadNpmTasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;grunt-contrib-qunit&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadNpmTasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;grunt-contrib-watch&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadNpmTasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;grunt-contrib-concat&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;registerTask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;jshint&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;qunit&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;registerTask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;jshint&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;qunit&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;concat&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;uglify&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Segue abaixo um exemplo do &lt;strong&gt;gulpfile.js&lt;/strong&gt;, similar ao Gruntfile acima, escrito para o &lt;strong&gt;GulpJS&lt;/strong&gt; :)&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pkg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;./package.json&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;concat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp-concat&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;minify&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp-minify&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;jshint&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gulp-jshint&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;spawn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;child_process&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;spawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scriptFiles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;./src/**/*.js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;compile&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// concat all scripts, minify, and output&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scriptFiles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;concat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pkg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;minify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;./dist/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// lint our scripts&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scriptFiles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;jshint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;quais-as-diferenas&quot;&gt;Quais as diferenças?&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Você utiliza o padrão do Gulp para fazer as tarefas básicas&lt;/li&gt;
+  &lt;li&gt;Plugins são simples e fazem apenas uma coisa. A maioria são apenas uma função com 20 linhas em média&lt;/li&gt;
+  &lt;li&gt;As tarefas são executadas de forma encadeada&lt;/li&gt;
+  &lt;li&gt;O código é bem menor e a curva de aprendizado também :)&lt;/li&gt;
+  &lt;li&gt;O Gulp não faz nada, apenas fornece um sistema básico de tarefas&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;learning&quot;&gt;Learning…&lt;/h2&gt;
+
+&lt;p&gt;Como aprender Grup? São 5 tarefas básicas que você precisa entender. São elas:&lt;/p&gt;
+
+&lt;h3 id=&quot;gulptaskname-fn&quot;&gt;gulp.task(name, fn)&lt;/h3&gt;
+
+&lt;p&gt;Isto registra uma função com um nome.&lt;/p&gt;
+
+&lt;p&gt;Você pode opcionalmente especificar algumas dependências se outras tarefas precisam rodar antes.&lt;/p&gt;
+
+&lt;h3 id=&quot;gulpruntasks&quot;&gt;gulp.run(tasks…)&lt;/h3&gt;
+
+&lt;p&gt;Roda todas as tarefas de forma encadeada&lt;/p&gt;
+
+&lt;h3 id=&quot;gulpwatchglob-fn&quot;&gt;gulp.watch(glob, fn)&lt;/h3&gt;
+
+&lt;p&gt;Roda a função quando o arquivo tiver alterações&lt;/p&gt;
+
+&lt;p&gt;(*) Incluido no core para simplificar&lt;/p&gt;
+
+&lt;h3 id=&quot;gulpsrcglob&quot;&gt;gulp.src(glob)&lt;/h3&gt;
+
+&lt;p&gt;Os arquivos que serão lidos no fluxo, e inicia a emissão do arquivo correspondente, podendo ser usado em outros fluxos.&lt;/p&gt;
+
+&lt;h3 id=&quot;gulpdestfolder&quot;&gt;gulp.dest(folder)&lt;/h3&gt;
+
+&lt;p&gt;Isto irá retornar o resultado do fluxo, e será salvo no destino (similar ao writeFile() do FileSystem, para quem já está acostumado com Node).&lt;/p&gt;
+
+&lt;p&gt;Pois é. Estes são os 5 métodos padrões do Gulp. E todos eles são usados no código de exemplo acima para facilitar o entendimento.&lt;/p&gt;
+
+&lt;h2 id=&quot;parabns&quot;&gt;Parabéns!&lt;/h2&gt;
+
+&lt;p&gt;Como a própria documentação diz, você agora tornou-se expert em Gulp! :)&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://morethings.io/javascript/gulpjs-como-se-tornar-expert-em-minutos&quot;&gt;Gulp JS: como se tornar Expert em minutos&lt;/a&gt; was originally published by Luiz Tiago at &lt;a href=&quot;http://morethings.io&quot;&gt;morethings.io&lt;/a&gt; on January 07, 2014.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
