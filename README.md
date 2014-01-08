@@ -13,7 +13,8 @@ Primeiramente você precisa ter o Ruby instalado na sua máquina. Se você tiver
 ``` bash
 gem install jekyll
 git clone git@github.com:luiztiago/morethings.io.git && cd morethings.io
-gem update
+bundle install
+npm install
 grunt
 ```
 
