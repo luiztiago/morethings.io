@@ -3,6 +3,7 @@ layout: post
 title:  "Novas collections do EcmaScript 6"
 date:   2013-12-19 10:00:00
 categories: javascript
+author: luiztiago
 image:
   feature: the-future-is-here.jpg
   credit: gwire

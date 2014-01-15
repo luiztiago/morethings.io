@@ -3,6 +3,7 @@ layout: post
 title:  "Gulp JS: como se tornar Expert em minutos"
 date:   2014-01-07 20:00:00
 categories: javascript
+author: luiztiago
 image:
   feature: gulpjs.png
 related:

@@ -24,6 +24,23 @@ owner:
   tumblr:
   # For Google Authorship https://plus.google.com/authorship
   google_plus:
+authors:
+  luiztiago:
+    name: Luiz Tiago
+    display_name: Luiz Taigo
+    avatar: bio-photo.jpg
+    email: luiztiago@gmail.com
+    web: http://luiztiago.com
+    twitter: luiztiago
+    github: luiztiago
+  djalmaaraujo:
+    name: Djalma Araújo
+    display_name: Djalma Araújo
+    avatar: djalmaaraujo.jpg
+    email: djalmaaraujo@gmail.com
+    web: http://djalmaaraujo.com
+    twitter: djalmaaraujo
+    github: djalmaaraujo
 
 # Analytics and webmaster tools stuff goes here
 google_analytics: UA-31914656-3
