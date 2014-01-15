@@ -2,26 +2,26 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 <title type="text">morethings.io</title>
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
-<link rel="self" type="application/atom+xml" href="http://morethings.io/feed.xml" />
-<link rel="alternate" type="text/html" href="http://morethings.io" />
-<updated>2014-01-15T17:40:50-03:00</updated>
-<id>http://morethings.io/</id>
+<link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
+<link rel="alternate" type="text/html" href="http://localhost:4000" />
+<updated>2014-01-15T17:52:11-03:00</updated>
+<id>http://localhost:4000/</id>
 <author>
   <name>Luiz Tiago</name>
-  <uri>http://morethings.io/</uri>
+  <uri>http://localhost:4000/</uri>
   <email>luiztiago@gmail.com</email>
 </author>
 
 
 <entry>
   <title type="html"><![CDATA[Gulp JS: como se tornar Expert em minutos]]></title>
-  <link>http://morethings.io/javascript/gulpjs-como-se-tornar-expert-em-minutos</link>
-  <id>http://morethings.io/javascript/gulpjs-como-se-tornar-expert-em-minutos</id>
+  <link>http://localhost:4000/javascript/gulpjs-como-se-tornar-expert-em-minutos</link>
+  <id>http://localhost:4000/javascript/gulpjs-como-se-tornar-expert-em-minutos</id>
   <published>2014-01-07T20:00:00Z</published>
   <updated>2014-01-07T20:00:00Z</updated>
   <author>
     <name>Luiz Tiago</name>
-    <uri>http://morethings.io</uri>
+    <uri>http://localhost:4000</uri>
     <email>luiztiago@gmail.com</email>
   </author>
   <content type="html">&lt;p&gt;Pra começar bem o ano, já tivemos o anúncio do &lt;strong&gt;Gulp JS&lt;/strong&gt;. Gulp é um automatizador de tarefas escrito em JavaScript. Ele é uma alternativa para o, atualmente mais popular, &lt;strong&gt;GruntJS&lt;/strong&gt;. Automatizar tarefas não é uma novidade. Algumas figurinhas já são bem conhecidas, como o &lt;code&gt;ant&lt;/code&gt; para Java, &lt;code&gt;rake&lt;/code&gt; para Ruby, entre outras. Mas todas seguem com um grande objetivo em comum: minimizar trabalho repetitivo. E pra manter a qualidade dos nossos projetos, não podemos deixar de estudar as opções que temos.&lt;/p&gt;
@@ -169,19 +169,19 @@
 
 &lt;p&gt;Como a própria documentação diz, você agora tornou-se expert em Gulp! :)&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://morethings.io/javascript/gulpjs-como-se-tornar-expert-em-minutos&quot;&gt;Gulp JS: como se tornar Expert em minutos&lt;/a&gt; was originally published by Luiz Tiago at &lt;a href=&quot;http://morethings.io&quot;&gt;morethings.io&lt;/a&gt; on January 07, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://localhost:4000/javascript/gulpjs-como-se-tornar-expert-em-minutos&quot;&gt;Gulp JS: como se tornar Expert em minutos&lt;/a&gt; was originally published by Luiz Tiago at &lt;a href=&quot;http://localhost:4000&quot;&gt;morethings.io&lt;/a&gt; on January 07, 2014.&lt;/p&gt;</content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Novas collections do EcmaScript 6]]></title>
-  <link>http://morethings.io/javascript/novas-collections-do-ecmascript-6</link>
-  <id>http://morethings.io/javascript/novas-collections-do-ecmascript-6</id>
+  <link>http://localhost:4000/javascript/novas-collections-do-ecmascript-6</link>
+  <id>http://localhost:4000/javascript/novas-collections-do-ecmascript-6</id>
   <published>2013-12-19T10:00:00Z</published>
   <updated>2013-12-19T10:00:00Z</updated>
   <author>
     <name>Luiz Tiago</name>
-    <uri>http://morethings.io</uri>
+    <uri>http://localhost:4000</uri>
     <email>luiztiago@gmail.com</email>
   </author>
   <content type="html">&lt;p&gt;Para quem estava no &lt;a href=&quot;http://frontinrecife.com.br&quot;&gt;Front in Recife&lt;/a&gt;, e acompanhou a minha palestra junto com &lt;a href=&quot;http://github.com/guilhermefarias&quot;&gt;Guilherme Farias&lt;/a&gt; ja teve um &lt;em&gt;spoiler&lt;/em&gt; do post, visto que apresentamos la um pouco sobre as novas &lt;em&gt;collections&lt;/em&gt;, bem como outras novidades do ECMAScript 6.&lt;/p&gt;
@@ -250,7 +250,7 @@
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// undefined&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://morethings.io/javascript/novas-collections-do-ecmascript-6&quot;&gt;Novas collections do EcmaScript 6&lt;/a&gt; was originally published by Luiz Tiago at &lt;a href=&quot;http://morethings.io&quot;&gt;morethings.io&lt;/a&gt; on December 19, 2013.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;http://localhost:4000/javascript/novas-collections-do-ecmascript-6&quot;&gt;Novas collections do EcmaScript 6&lt;/a&gt; was originally published by Luiz Tiago at &lt;a href=&quot;http://localhost:4000&quot;&gt;morethings.io&lt;/a&gt; on December 19, 2013.&lt;/p&gt;</content>
 </entry>
 
 </feed>
