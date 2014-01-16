@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Configurando um servidor nodejs para produção com ubuntu server e forever"
+title:  "Como configurar um servidor node.js para produção"
 date:   2014-01-16 20:00:00
 categories: javascript, node
 author: djalmaaraujo
@@ -23,7 +23,7 @@ comments: true
 description: "Você já precisou configurar ou sempre teve curiosidade de como configurar um servidor para rodar suas aplicações node js? Aprende como fazer deploy de sua aplicação com node js utilizando Forever."
 ---
 
-Neste post, estou assumindo que você já possui sua VPS instalada e configurada com o Ubuntu Server. Caso você não possua, aqui vão algumas opções:
+Neste post, estou assumindo que você já possui sua VPS instalada e configurada com o Ubuntu Server. Optei pelo Ubuntu, por ser uma distribuição super simples de configurar. Caso você não possua, aqui vão algumas opções:
 
 1. [Amazon EC2](http://aws.amazon.com/ec2/)
 2. [Linode](http://www.linode.com/)
@@ -78,7 +78,7 @@ Para nosso deploy, nós utilizaremos o GIT e o forever. Para isso, precisamos in
 sudo apt-get install git
 {% endhighlight bash %}
 
-Provavelmente a instalação pedirá para você apertar ```Y``` para concondar em baixar os arquivos.
+Provavelmente a instalação pedirá para você apertar ```Y``` para concordar em baixar os arquivos.
 
 Com o GIT instalado, nos resta começar a brincar de instalar o NODE e logo menos, o forever para manter sua aplicação rodando em background. 
 
