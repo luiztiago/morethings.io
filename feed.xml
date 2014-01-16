@@ -4,13 +4,201 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://morethings.io/feed.xml" />
 <link rel="alternate" type="text/html" href="http://morethings.io" />
-<updated>2014-01-15T17:57:54-03:00</updated>
+<updated>2014-01-16T01:00:21-03:00</updated>
 <id>http://morethings.io/</id>
 <author>
   <name>Luiz Tiago</name>
   <uri>http://morethings.io/</uri>
   <email>luiztiago@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Como configurar um servidor node.js para produção]]></title>
+  <link>http://morethings.io/javascript/node/configurando-um-servidor-nodejs-para-producao-com-ubuntu-server</link>
+  <id>http://morethings.io/javascript/node/configurando-um-servidor-nodejs-para-producao-com-ubuntu-server</id>
+  <published>2014-01-16T20:00:00Z</published>
+  <updated>2014-01-16T20:00:00Z</updated>
+  <author>
+    <name>Luiz Tiago</name>
+    <uri>http://morethings.io</uri>
+    <email>luiztiago@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;Neste post, estou assumindo que você já possui sua VPS instalada e configurada com o Ubuntu Server. Optei pelo Ubuntu, por ser uma distribuição super simples de configurar. Caso você não possua, aqui vão algumas opções:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;http://aws.amazon.com/ec2/&quot;&gt;Amazon EC2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.linode.com/&quot;&gt;Linode&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://webbynode.com&quot;&gt;WebbyNode&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.digitalocean/&quot;&gt;Digital Ocean&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Após o jabá gratuito, o primeiro passo, é você facilitar futuros acessos a máquina, guardando sua chave pública (~/.ssh/id_rsa.pub). Se você não sabe como gerar sua chave, &lt;a href=&quot;https://help.github.com/articles/generating-ssh-keys&quot;&gt;siga este tutorial&lt;/a&gt;. O motivo deste procedimento é para você não precisar digitar sua senha toda as vezes que acessar a VPS.&lt;/p&gt;
+
+&lt;h2 id=&quot;ssh-key&quot;&gt;SSH key&lt;/h2&gt;
+
+&lt;p&gt;Se você utiliza Mac, aqui vai uma dica super simples para copiar sua chave:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;cat ~/.ssh/id_rsa.pub &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; pbcopy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Com este comando, sua chave já estará no seu clipboard para colar no servidor. Com sua chave em mãos, vamos nos conectar à vps e executar os seguintes comandos:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;ssh usuario@ip-de-sua-vps &lt;span class=&quot;c&quot;&gt;# Ele vai solicitar sua senha desta vez.&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/.ssh &lt;span class=&quot;c&quot;&gt;# Caso o diretório .ssh não exista, você deve criá-lo: mkdir ~/.ssh&lt;/span&gt;
+vi authorized_keys
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Caso o arquivo não exista, digite &lt;code&gt;touch authorized_keys&lt;/code&gt;. Em alguns casos você precisará utilizar &lt;code&gt;sudo&lt;/code&gt;. Então, &lt;code&gt;sudo touch authorized_keys&lt;/code&gt; e &lt;code&gt;sudo vi authorized_keys&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Com o arquivo aberto no terminal, digite a tecla &lt;code&gt;i&lt;/code&gt; para entrar em modo de edição no vi. Com o modo de edição ativado, cole sua chave que já deve estar no seu clipboard. (cmd + v para macs) e (control + v) para Windows/Linux. Com sua chave colada, aperte &lt;code&gt;esc&lt;/code&gt; para voltar ao modo de leitura e em seguida &lt;code&gt;x&lt;/code&gt; para salvar e fechar ao mesmo tempo.&lt;/p&gt;
+
+&lt;p&gt;Pronto, ssh key copiada! Caso você tenha criado o arquivo &lt;code&gt;authorized_keys&lt;/code&gt;, você vai precisar executar este comando para que o que fizemos tenha feito:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo chmod 444 ~/.ssh/authorized_keys
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esta forma de copiar a chave é bem manual, mas serve como aprendizado.&lt;/p&gt;
+
+&lt;p&gt;Outra forma muito útil de copiar sua chave é utilizando &lt;code&gt;ssh-copy-id&lt;/code&gt;. Se você utiliza Ubuntu por exemplo é só utilizar o comando. Se você é usuário Mac, você pode instalar através do &lt;code&gt;brew install ssh-copy-id&lt;/code&gt;. Para utilizar é muito simples:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;ssh-copy-id user@hostname.example.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Agora, da próxima vez que você acessar sua VPS &lt;code&gt;ssh user@ip-de-sua-vps&lt;/code&gt;, não haverá necessidade de digitar sua senha.&lt;/p&gt;
+
+&lt;h2 id=&quot;seguindo-git&quot;&gt;Seguindo.. GIT!&lt;/h2&gt;
+
+&lt;p&gt;Para nosso deploy, nós utilizaremos o GIT e o forever. Para isso, precisamos instalar o git na VPS. Para verificar se você já possui o git instalado, digite &lt;code&gt;which git&lt;/code&gt;. Se você receber a mensagem “git not found”, vamos instalá-lo através do seguinte comando:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo apt-get install git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Provavelmente a instalação pedirá para você apertar &lt;code&gt;Y&lt;/code&gt; para concordar em baixar os arquivos.&lt;/p&gt;
+
+&lt;p&gt;Com o GIT instalado, nos resta começar a brincar de instalar o NODE e logo menos, o forever para manter sua aplicação rodando em background.&lt;/p&gt;
+
+&lt;h2 id=&quot;instalando-o-node&quot;&gt;Instalando o Node&lt;/h2&gt;
+
+&lt;p&gt;Para instalar o node, vamos utilizar o apt-get, porém, os pacotes nem sempre estão atualizados como deveriam, então, para garantir que seja instalada a versão mais nova do node, vamos informar ao apt-get que desejamos um repositório específico para baixar o node:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install nodejs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Com o node instalado, vamos testar se funcionou digitando &lt;code&gt;node --version&lt;/code&gt;. Pronto, você já deve estar com o node instalado e consequentemente o npm, já que o mesmo vem “built-in” já faz algum tempo.&lt;/p&gt;
+
+&lt;h3 id=&quot;vamos-ao-exemplo-finalmente-node&quot;&gt;Vamos ao exemplo! Finalmente, node!&lt;/h3&gt;
+
+&lt;p&gt;Navegue até a pasta de seu usuário, Vamos clonar uma aplicação Express já existente para facilitar nosso trabalho.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~
+git clone https://github.com/djalmaaraujo/express-js-example-blog
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;express-js-example-blog
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Se você tentar rodar &lt;code&gt;node app.js&lt;/code&gt;, você vai receber alguns erros, uma vez que precisamos instalar as dependências. Para isso, vamos utilizar o ```npm install``. Depois de algum tempo e muito output, o final se parecerá com isso:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;...
+...
+express@3.4.7 node_modules/express
+├── methods@0.1.0
+├── merge-descriptors@0.0.1
+├── cookie-signature@1.0.1
+doctype html
+├── range-parser@0.0.4
+├── fresh@0.2.0
+├── debug@0.7.4
+├── buffer-crc32@0.2.1
+├── cookie@0.1.0
+├── mkdirp@0.3.5
+├── send@0.1.4 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;mime@1.2.11&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+├── commander@1.3.2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;keypress@0.1.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+└── connect@2.12.0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;uid2@0.0.3, pause@0.0.1, qs@0.6.6, bytes@0.2.1, raw-body@1.1.2, batch@0.5.0, negotiator@0.3.0, multiparty@2.2.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Pronto! Estamos prontos para rodar nossa primeira aplicação node em nossa VPS. Para isso, digite &lt;code&gt;node app.js&lt;/code&gt; ou apenas &lt;code&gt;node app&lt;/code&gt;. Com isso você receberá a seguinte mensagem:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Express server listening on port 3000&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Agora, você deve acessar sua VPS no browser, &lt;code&gt;http://ip-de-sua-vps:3000&lt;/code&gt;. Você verá a tela do express inicial:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;Express
+Welcome to Express
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;e-agora&quot;&gt;E agora?&lt;/h2&gt;
+
+&lt;p&gt;Perfeito! Agora nós temos nossa aplicação rodando e já podemos efetuar testes. Mas ninguém gosta de acessar sites na porta &lt;code&gt;3000&lt;/code&gt;, correto? Para configurar nossa porta &lt;code&gt;80&lt;/code&gt;, nós faremos mais algumas coisas.&lt;/p&gt;
+
+&lt;p&gt;Por padrão, o Ubuntu server vem com porta 80 bloqueada em seu firewall e além disso, para não ter necessidade de ficar “cascavilhando” e brigando com firewall e etc, vamos manter nossa aplicação rodando na porta &lt;code&gt;3000&lt;/code&gt; e redirecionar a porta &lt;code&gt;80&lt;/code&gt;. Assim, quando os usuários acessarem seu app, a porta &lt;code&gt;80&lt;/code&gt; será redirecionada para a porta &lt;code&gt;3000&lt;/code&gt; em background.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Não, seu browser não será redirecionado para :3000&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Para isso vamos primeiro checar se o “ip forwarding” está ativado na máquina. &lt;code&gt;cat /proc/sys/net/ipv4/ip_forward&lt;/code&gt; vai te dizer se está ativado ou não. Caso você receba &lt;code&gt;0&lt;/code&gt;, para habilitar utilize as seguintes instruções:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo vi /etc/sysctl.conf
+net.ipv4.ip_forward &lt;span class=&quot;c&quot;&gt;# Descomente esta linha no arquivo aberto. Salve e feche o arquivo.&lt;/span&gt;
+sudo sysctl -p /etc/sysctl.conf &lt;span class=&quot;c&quot;&gt;# Para ativar as modificações feitas no arquivo.&lt;/span&gt;
+cat /proc/sys/net/ipv4/ip_forward &lt;span class=&quot;c&quot;&gt;# Para verificar se agora está ativado.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Com o “port forwarding” ativado, agora vamos ativar nosso redirecionamento da porta &lt;code&gt;80&lt;/code&gt; para a porta &lt;code&gt;3000&lt;/code&gt;, utilizando iptables.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Como dito acima, por padrão a porta &lt;code&gt;80&lt;/code&gt; é bloqueada no firewall, então vamos permitir conexões através desta porta:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo iptables -A INPUT -p tcp -m tcp --sport 80 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp -m tcp --dport 80 -j ACCEPT
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;reiniciando-a-aplicao&quot;&gt;Reiniciando a aplicação&lt;/h2&gt;
+&lt;p&gt;Vá até sua aplicação, inicie a mesma &lt;code&gt;node app&lt;/code&gt;, e verifique agora no seu browser, que você pode acessar sua máquina através da porta &lt;code&gt;80&lt;/code&gt;. &lt;code&gt;http://ip-de-sua-maquina&lt;/code&gt;. O output da aplicação continuará dizendo &lt;code&gt;listening on port 3000&lt;/code&gt;, mas agora sua porta &lt;code&gt;80&lt;/code&gt; está sendo redirecionada para a &lt;code&gt;3000&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;mais-um-passo-para-a-vitria-colocando-a-aplicao-para-rodar-em-background-com-forever&quot;&gt;Mais um passo para a vitória. Colocando a aplicação para rodar em background com forever&lt;/h2&gt;
+
+&lt;p&gt;Vamos começar instalado o forever, através do npm.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[sudo] npm install forever -g&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Para utilizar o forever é extremamente simples, apenas saiba o path de sua aplicação e digite o seguinte comando:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;forever start /home/seuusuario/express-js-example-blog/app.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Com isso, você terá o seguinte output:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;warn:    --minUptime not set. Defaulting to: 1000ms
+warn:    --spinSleepTime not set. Your script will &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;it does not stay up &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;at least 1000ms
+info:    Forever processing file: app.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Você percebeu que agora, seu console ficou livre para efetuar outras operações. Isso acontece devido ao forever colocar o processo do node em background.&lt;/p&gt;
+
+&lt;p&gt;Aqui vão algumas dicas para você interagir mais com o forever:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;forever list&lt;/code&gt; Lista todas as suas aplicações iniciadas com o forever.&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;tail -f /path/para/o/log/fornecido.log&lt;/code&gt; Você pode verificar o log de sua aplicação em tempo real.&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;forever stopall&lt;/code&gt; Para todas as aplicações&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;forever stop ID&lt;/code&gt; Para uma aplicação específica. Para conseguir o id, digite forever list.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Mais detalhes, acesse: &lt;a href=&quot;https://github.com/nodejitsu/forever&quot;&gt;https://github.com/nodejitsu/forever&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;up-and-running&quot;&gt;Up and running!&lt;/h2&gt;
+&lt;p&gt;Seguindo todos estes passos, você terá sua VPS configurada para rodar suas aplicações node sem se preocupar em utilizar hosts de terceiros.&lt;/p&gt;
+
+&lt;p&gt;Existem diversas formas de se fazer setup de aplicações, e esta nem é a melhor, nem a pior, mas funciona. Se você estiver trabalhando em um projeto pequeno e que você não está preocupado em ter acesso root a máquina, eu recomendo fortemente que você utilize o &lt;a href=&quot;http://heroku.com&quot;&gt;Heroku&lt;/a&gt; para deploy de suas aplicações node/ruby/whatever.&lt;/p&gt;
+
+&lt;p&gt;Para o setup no heroku, você pode seguir este simples “Getting started”: &lt;a href=&quot;https://devcenter.heroku.com/articles/getting-started-with-nodejs&quot;&gt;https://devcenter.heroku.com/articles/getting-started-with-nodejs&lt;/a&gt;, mas isso é assunto para outro post.&lt;/p&gt;
+
+&lt;p&gt;Comentem, reclamem, corrijam! Até mais!&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://morethings.io/javascript/node/configurando-um-servidor-nodejs-para-producao-com-ubuntu-server&quot;&gt;Como configurar um servidor node.js para produção&lt;/a&gt; was originally published by Luiz Tiago at &lt;a href=&quot;http://morethings.io&quot;&gt;morethings.io&lt;/a&gt; on January 16, 2014.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>

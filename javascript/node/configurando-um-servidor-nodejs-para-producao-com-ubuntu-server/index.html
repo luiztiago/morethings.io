@@ -1,0 +1,408 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Como configurar um servidor node.js para produção &#8211; morethings.io</title>
+<meta name="description" content="Você já precisou configurar ou sempre teve curiosidade de como configurar um servidor para rodar suas aplicações node js? Aprende como fazer deploy de sua aplicação com node js utilizando Forever.">
+<meta name="keywords" content="">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://morethings.io/images/posts/djalmaaraujo/ubuntu-setup.png">
+
+<meta name="twitter:title" content="Como configurar um servidor node.js para produção">
+<meta name="twitter:description" content="Você já precisou configurar ou sempre teve curiosidade de como configurar um servidor para rodar suas aplicações node js? Aprende como fazer deploy de sua aplicação com node js utilizando Forever.">
+<meta name="twitter:creator" content="@morethingsio">
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Como configurar um servidor node.js para produção">
+<meta property="og:description" content="Você já precisou configurar ou sempre teve curiosidade de como configurar um servidor para rodar suas aplicações node js? Aprende como fazer deploy de sua aplicação com node js utilizando Forever.">
+<meta property="og:url" content="http://morethings.io/javascript/node/configurando-um-servidor-nodejs-para-producao-com-ubuntu-server">
+<meta property="og:site_name" content="morethings.io">
+<meta property="og:image" content="http://morethings.io/images/mt.png">
+<meta property="og:type" content="website">
+
+<meta name="google-site-verification" content="uvPVqBq23eyYbMxC3O2qGYrJOJCSY7n6QNcJZcYzpyw">
+
+
+<link rel="canonical" href="http://morethings.io/javascript/node/configurando-um-servidor-nodejs-para-producao-com-ubuntu-server">
+<link href="http://morethings.io/feed.xml" type="application/atom+xml" rel="alternate" title="morethings.io Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://morethings.io/assets/css/main.min.css">
+<!-- Webfonts -->
+<script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://morethings.io/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://morethings.io/images/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://morethings.io/images/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://morethings.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://morethings.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://morethings.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://morethings.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post" itemscope itemtype="http://schema.org/WebPage">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	    <ul>
+	        <li><a href="http://morethings.io" title="Inicio">Inicio</a></li>
+	        
+			<li>
+				
+					<a href="http://morethings.io/about">Sobre</a>
+				
+			</li>
+	        
+			<li>
+				
+					<a href="http://morethings.io/posts">Posts</a>
+				
+			</li>
+	        
+	        <li><a href="http://morethings.io/feed.xml" title="Atom/RSS feed">Feed</a></li>
+	        
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+
+
+<header class="masthead" itemscope itemtype="http://schema.org/Organization">
+	<div class="wrap">
+		<h1 class="site-title animated fadeIn"><a href="http://morethings.io">morethings.io</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">More things about Front-end Development</h2>
+	</div>
+</header><!-- /.masthead -->
+
+
+<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <img src="http://morethings.io/images/posts/djalmaaraujo/ubuntu-setup.png" class="entry-feature-image" alt="Como configurar um servidor node.js para produção" itemprop="image">
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <span class="entry-tags"></span>
+        
+          <h1 class="entry-title" itemprop="headline">Como configurar um servidor node.js para produção</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        <img src="http://morethings.io/images/djalmaaraujo.jpg" alt="Djalma Araújo photo" class="author-photo">
+        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://morethings.io/about" title="About Djalma Araújo" itemprop="url"><i class="icon-user"></i> Djalma Araújo</a></span></span>
+        <span class="entry-date date published"><time datetime="2014-01-16T20:00:00Z" itemprop="datePublished"><i class="icon-calendar-empty"></i> January 16, 2014</time></span>
+        
+        <span class="entry-comments"><i class="icon-comment-alt"></i> <a href="#disqus_thread">Comment</a></span>
+      </footer>
+      <div class="entry-content" itemprop="description">
+        <p>Neste post, estou assumindo que você já possui sua VPS instalada e configurada com o Ubuntu Server. Optei pelo Ubuntu, por ser uma distribuição super simples de configurar. Caso você não possua, aqui vão algumas opções:</p>
+
+<ol>
+  <li><a href="http://aws.amazon.com/ec2/">Amazon EC2</a></li>
+  <li><a href="http://www.linode.com/">Linode</a></li>
+  <li><a href="http://webbynode.com">WebbyNode</a></li>
+  <li><a href="http://www.digitalocean/">Digital Ocean</a></li>
+</ol>
+
+<p>Após o jabá gratuito, o primeiro passo, é você facilitar futuros acessos a máquina, guardando sua chave pública (~/.ssh/id_rsa.pub). Se você não sabe como gerar sua chave, <a href="https://help.github.com/articles/generating-ssh-keys">siga este tutorial</a>. O motivo deste procedimento é para você não precisar digitar sua senha toda as vezes que acessar a VPS.</p>
+
+<h2 id="ssh-key">SSH key</h2>
+
+<p>Se você utiliza Mac, aqui vai uma dica super simples para copiar sua chave:</p>
+
+<div class="highlight"><pre><code class="bash">cat ~/.ssh/id_rsa.pub <span class="p">|</span> pbcopy
+</code></pre></div>
+
+<p>Com este comando, sua chave já estará no seu clipboard para colar no servidor. Com sua chave em mãos, vamos nos conectar à vps e executar os seguintes comandos:</p>
+
+<div class="highlight"><pre><code class="bash">ssh usuario@ip-de-sua-vps <span class="c"># Ele vai solicitar sua senha desta vez.</span>
+<span class="nb">cd</span> ~/.ssh <span class="c"># Caso o diretório .ssh não exista, você deve criá-lo: mkdir ~/.ssh</span>
+vi authorized_keys
+</code></pre></div>
+
+<p>Caso o arquivo não exista, digite <code>touch authorized_keys</code>. Em alguns casos você precisará utilizar <code>sudo</code>. Então, <code>sudo touch authorized_keys</code> e <code>sudo vi authorized_keys</code>.</p>
+
+<p>Com o arquivo aberto no terminal, digite a tecla <code>i</code> para entrar em modo de edição no vi. Com o modo de edição ativado, cole sua chave que já deve estar no seu clipboard. (cmd + v para macs) e (control + v) para Windows/Linux. Com sua chave colada, aperte <code>esc</code> para voltar ao modo de leitura e em seguida <code>x</code> para salvar e fechar ao mesmo tempo.</p>
+
+<p>Pronto, ssh key copiada! Caso você tenha criado o arquivo <code>authorized_keys</code>, você vai precisar executar este comando para que o que fizemos tenha feito:</p>
+
+<div class="highlight"><pre><code class="bash">sudo chmod 444 ~/.ssh/authorized_keys
+</code></pre></div>
+
+<p>Esta forma de copiar a chave é bem manual, mas serve como aprendizado.</p>
+
+<p>Outra forma muito útil de copiar sua chave é utilizando <code>ssh-copy-id</code>. Se você utiliza Ubuntu por exemplo é só utilizar o comando. Se você é usuário Mac, você pode instalar através do <code>brew install ssh-copy-id</code>. Para utilizar é muito simples:</p>
+
+<div class="highlight"><pre><code class="bash">ssh-copy-id user@hostname.example.com
+</code></pre></div>
+
+<p>Agora, da próxima vez que você acessar sua VPS <code>ssh user@ip-de-sua-vps</code>, não haverá necessidade de digitar sua senha.</p>
+
+<h2 id="seguindo-git">Seguindo.. GIT!</h2>
+
+<p>Para nosso deploy, nós utilizaremos o GIT e o forever. Para isso, precisamos instalar o git na VPS. Para verificar se você já possui o git instalado, digite <code>which git</code>. Se você receber a mensagem “git not found”, vamos instalá-lo através do seguinte comando:</p>
+
+<div class="highlight"><pre><code class="bash">sudo apt-get install git
+</code></pre></div>
+
+<p>Provavelmente a instalação pedirá para você apertar <code>Y</code> para concordar em baixar os arquivos.</p>
+
+<p>Com o GIT instalado, nos resta começar a brincar de instalar o NODE e logo menos, o forever para manter sua aplicação rodando em background.</p>
+
+<h2 id="instalando-o-node">Instalando o Node</h2>
+
+<p>Para instalar o node, vamos utilizar o apt-get, porém, os pacotes nem sempre estão atualizados como deveriam, então, para garantir que seja instalada a versão mais nova do node, vamos informar ao apt-get que desejamos um repositório específico para baixar o node:</p>
+
+<div class="highlight"><pre><code class="bash">sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install nodejs
+</code></pre></div>
+
+<p>Com o node instalado, vamos testar se funcionou digitando <code>node --version</code>. Pronto, você já deve estar com o node instalado e consequentemente o npm, já que o mesmo vem “built-in” já faz algum tempo.</p>
+
+<h3 id="vamos-ao-exemplo-finalmente-node">Vamos ao exemplo! Finalmente, node!</h3>
+
+<p>Navegue até a pasta de seu usuário, Vamos clonar uma aplicação Express já existente para facilitar nosso trabalho.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~
+git clone https://github.com/djalmaaraujo/express-js-example-blog
+<span class="nb">cd </span>express-js-example-blog
+</code></pre></div>
+
+<p>Se você tentar rodar <code>node app.js</code>, você vai receber alguns erros, uma vez que precisamos instalar as dependências. Para isso, vamos utilizar o ```npm install``. Depois de algum tempo e muito output, o final se parecerá com isso:</p>
+
+<div class="highlight"><pre><code class="bash">...
+...
+express@3.4.7 node_modules/express
+├── methods@0.1.0
+├── merge-descriptors@0.0.1
+├── cookie-signature@1.0.1
+doctype html
+├── range-parser@0.0.4
+├── fresh@0.2.0
+├── debug@0.7.4
+├── buffer-crc32@0.2.1
+├── cookie@0.1.0
+├── mkdirp@0.3.5
+├── send@0.1.4 <span class="o">(</span>mime@1.2.11<span class="o">)</span>
+├── commander@1.3.2 <span class="o">(</span>keypress@0.1.0<span class="o">)</span>
+└── connect@2.12.0 <span class="o">(</span>uid2@0.0.3, pause@0.0.1, qs@0.6.6, bytes@0.2.1, raw-body@1.1.2, batch@0.5.0, negotiator@0.3.0, multiparty@2.2.0<span class="o">)</span>
+</code></pre></div>
+
+<p>Pronto! Estamos prontos para rodar nossa primeira aplicação node em nossa VPS. Para isso, digite <code>node app.js</code> ou apenas <code>node app</code>. Com isso você receberá a seguinte mensagem:</p>
+
+<p><code>Express server listening on port 3000</code></p>
+
+<p>Agora, você deve acessar sua VPS no browser, <code>http://ip-de-sua-vps:3000</code>. Você verá a tela do express inicial:</p>
+
+<div class="highlight"><pre><code class="bash">Express
+Welcome to Express
+</code></pre></div>
+
+<h2 id="e-agora">E agora?</h2>
+
+<p>Perfeito! Agora nós temos nossa aplicação rodando e já podemos efetuar testes. Mas ninguém gosta de acessar sites na porta <code>3000</code>, correto? Para configurar nossa porta <code>80</code>, nós faremos mais algumas coisas.</p>
+
+<p>Por padrão, o Ubuntu server vem com porta 80 bloqueada em seu firewall e além disso, para não ter necessidade de ficar “cascavilhando” e brigando com firewall e etc, vamos manter nossa aplicação rodando na porta <code>3000</code> e redirecionar a porta <code>80</code>. Assim, quando os usuários acessarem seu app, a porta <code>80</code> será redirecionada para a porta <code>3000</code> em background.</p>
+
+<p><code>Não, seu browser não será redirecionado para :3000</code></p>
+
+<p>Para isso vamos primeiro checar se o “ip forwarding” está ativado na máquina. <code>cat /proc/sys/net/ipv4/ip_forward</code> vai te dizer se está ativado ou não. Caso você receba <code>0</code>, para habilitar utilize as seguintes instruções:</p>
+
+<div class="highlight"><pre><code class="bash">sudo vi /etc/sysctl.conf
+net.ipv4.ip_forward <span class="c"># Descomente esta linha no arquivo aberto. Salve e feche o arquivo.</span>
+sudo sysctl -p /etc/sysctl.conf <span class="c"># Para ativar as modificações feitas no arquivo.</span>
+cat /proc/sys/net/ipv4/ip_forward <span class="c"># Para verificar se agora está ativado.</span>
+</code></pre></div>
+
+<p>Com o “port forwarding” ativado, agora vamos ativar nosso redirecionamento da porta <code>80</code> para a porta <code>3000</code>, utilizando iptables.</p>
+
+<div class="highlight"><pre><code class="bash">sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
+</code></pre></div>
+
+<p>Como dito acima, por padrão a porta <code>80</code> é bloqueada no firewall, então vamos permitir conexões através desta porta:</p>
+
+<div class="highlight"><pre><code class="bash">sudo iptables -A INPUT -p tcp -m tcp --sport 80 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp -m tcp --dport 80 -j ACCEPT
+</code></pre></div>
+
+<h2 id="reiniciando-a-aplicao">Reiniciando a aplicação</h2>
+<p>Vá até sua aplicação, inicie a mesma <code>node app</code>, e verifique agora no seu browser, que você pode acessar sua máquina através da porta <code>80</code>. <code>http://ip-de-sua-maquina</code>. O output da aplicação continuará dizendo <code>listening on port 3000</code>, mas agora sua porta <code>80</code> está sendo redirecionada para a <code>3000</code>.</p>
+
+<h2 id="mais-um-passo-para-a-vitria-colocando-a-aplicao-para-rodar-em-background-com-forever">Mais um passo para a vitória. Colocando a aplicação para rodar em background com forever</h2>
+
+<p>Vamos começar instalado o forever, através do npm.</p>
+
+<p><code>[sudo] npm install forever -g</code></p>
+
+<p>Para utilizar o forever é extremamente simples, apenas saiba o path de sua aplicação e digite o seguinte comando:</p>
+
+<p><code>forever start /home/seuusuario/express-js-example-blog/app.js</code></p>
+
+<p>Com isso, você terá o seguinte output:</p>
+
+<div class="highlight"><pre><code class="bash">warn:    --minUptime not set. Defaulting to: 1000ms
+warn:    --spinSleepTime not set. Your script will <span class="nb">exit </span><span class="k">if </span>it does not stay up <span class="k">for </span>at least 1000ms
+info:    Forever processing file: app.js
+</code></pre></div>
+
+<p>Você percebeu que agora, seu console ficou livre para efetuar outras operações. Isso acontece devido ao forever colocar o processo do node em background.</p>
+
+<p>Aqui vão algumas dicas para você interagir mais com o forever:</p>
+
+<ul>
+  <li><code>forever list</code> Lista todas as suas aplicações iniciadas com o forever.</li>
+  <li><code>tail -f /path/para/o/log/fornecido.log</code> Você pode verificar o log de sua aplicação em tempo real.</li>
+  <li><code>forever stopall</code> Para todas as aplicações</li>
+  <li><code>forever stop ID</code> Para uma aplicação específica. Para conseguir o id, digite forever list.</li>
+</ul>
+
+<p>Mais detalhes, acesse: <a href="https://github.com/nodejitsu/forever">https://github.com/nodejitsu/forever</a></p>
+
+<h2 id="up-and-running">Up and running!</h2>
+<p>Seguindo todos estes passos, você terá sua VPS configurada para rodar suas aplicações node sem se preocupar em utilizar hosts de terceiros.</p>
+
+<p>Existem diversas formas de se fazer setup de aplicações, e esta nem é a melhor, nem a pior, mas funciona. Se você estiver trabalhando em um projeto pequeno e que você não está preocupado em ter acesso root a máquina, eu recomendo fortemente que você utilize o <a href="http://heroku.com">Heroku</a> para deploy de suas aplicações node/ruby/whatever.</p>
+
+<p>Para o setup no heroku, você pode seguir este simples “Getting started”: <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs">https://devcenter.heroku.com/articles/getting-started-with-nodejs</a>, mas isso é assunto para outro post.</p>
+
+<p>Comentem, reclamem, corrijam! Até mais!</p>
+
+        
+          <aside class="entry-related">
+            <h4>Referências</h4>
+            <ul>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://nodejs.org/" alt="Site Oficial" title="Site Oficial">Site Oficial</a>
+                
+                  - Node JS
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="https://github.com/nodejitsu/forever" alt="Forever Github Repository" title="Forever Github Repository">Forever Github Repository</a>
+                
+                  - Forever
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://git-scm.com/" alt="Git SCM" title="Git SCM">Git SCM</a>
+                
+                  - Git
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://www.lauradhamilton.com/how-to-set-up-a-nodejs-web-server-on-amazon-ec2" alt="How to setup a node.js Web Server on Amazon EC2" title="How to setup a node.js Web Server on Amazon EC2">How to setup a node.js Web Server on Amazon EC2</a>
+                
+                  - How to setup a node.js Web Server on Amazon EC2
+                
+              </li>
+              
+            </ul>
+          </aside>
+        
+        <div id="disqus_thread"></div><!-- /#disqus_thread -->
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://morethings.io/javascript/gulpjs-como-se-tornar-expert-em-minutos" class="btn" title="Gulp JS: como se tornar Expert em minutos">Previous article</a>
+      
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2014 - morethings.io</span>
+<div class="social-icons">
+	<a href="http://twitter.com/morethingsio" title="Luiz Tiago on Twitter" target="_blank"><i class="icon-twitter icon-2x"></i></a>
+	<a href="http://facebook.com/morethings.io" title="Luiz Tiago on Facebook" target="_blank"><i class="icon-facebook icon-2x"></i></a>
+	
+	
+	
+	
+	
+	<a href="http://github.com/luiztiago/morethings.io" title="Luiz Tiago on Github" target="_blank"><i class="icon-github icon-2x"></i></a>
+	
+</div><!-- /.social-icons -->
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://morethings.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://morethings.io/assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31914656-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    
+
+    var disqus_shortname = 'morethingsio'; // required: replace example with your forum shortname
+    var disqus_url = 'http://morethings.io/javascript/node/configurando-um-servidor-nodejs-para-producao-com-ubuntu-server/';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</body>
+</html>
