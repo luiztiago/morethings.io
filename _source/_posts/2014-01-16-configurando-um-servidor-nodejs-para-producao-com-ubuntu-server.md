@@ -2,7 +2,7 @@
 layout: post
 title:  "Como configurar um servidor node.js para produção"
 date:   2014-01-16 20:00:00
-categories: javascript, node
+categories: javascript node
 author: djalmaaraujo
 image:
   feature: posts/djalmaaraujo/ubuntu-setup.png
@@ -80,7 +80,7 @@ sudo apt-get install git
 
 Provavelmente a instalação pedirá para você apertar ```Y``` para concordar em baixar os arquivos.
 
-Com o GIT instalado, nos resta começar a brincar de instalar o NODE e logo menos, o forever para manter sua aplicação rodando em background. 
+Com o GIT instalado, nos resta começar a brincar de instalar o NODE e logo menos, o forever para manter sua aplicação rodando em background.
 
 ## Instalando o Node
 
