@@ -51,6 +51,13 @@ module.exports = function(grunt) {
         }]
       }
     },
+    copy: {
+      main: {
+        files: [
+          {expand: true, src: ['_source/CNAME'], dest: '_site'}
+        ]
+      }
+    },
     jekyll: {
       options: {
         auto: true
@@ -101,9 +108,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Register tasks
-  grunt.registerTask('default', ['clean','recess','uglify','imagemin','jekyll:serve']);
-  grunt.registerTask('build', ['clean','recess','uglify','imagemin','jekyll:build']);
+  grunt.registerTask('default', ['clean','recess','uglify','imagemin','copy','jekyll:serve']);
+  grunt.registerTask('build', ['clean','recess','uglify','imagemin','copy','jekyll:build']);
 
 };
