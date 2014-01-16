@@ -28,7 +28,7 @@ Neste post, estou assumindo que você já possui sua VPS instalada e configurada
 1. [Amazon EC2](http://aws.amazon.com/ec2/)
 2. [Linode](http://www.linode.com/)
 3. [WebbyNode](http://webbynode.com)
-4. [Digital Ocean](http://www.digitalocean/)
+4. [Digital Ocean](http://www.digitalocean.com/)
 
 Após o jabá gratuito, o primeiro passo, é você facilitar futuros acessos a máquina, guardando sua chave pública (~/.ssh/id_rsa.pub). Se você não sabe como gerar sua chave, [siga este tutorial](https://help.github.com/articles/generating-ssh-keys). O motivo deste procedimento é para você não precisar digitar sua senha toda as vezes que acessar a VPS.
 
