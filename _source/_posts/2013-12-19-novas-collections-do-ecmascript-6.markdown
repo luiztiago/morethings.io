@@ -5,7 +5,7 @@ date:   2013-12-19 10:00:00
 categories: javascript
 author: luiztiago
 image:
-  feature: the-future-is-here.jpg
+  feature: posts/luiztiago/the-future-is-here.jpg
   credit: gwire
   creditlink: http://www.flickr.com/photos/gwire/3397651143/
 related:

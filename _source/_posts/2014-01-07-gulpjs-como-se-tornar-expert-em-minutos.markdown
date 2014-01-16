@@ -5,7 +5,7 @@ date:   2014-01-07 20:00:00
 categories: javascript
 author: luiztiago
 image:
-  feature: gulpjs.png
+  feature: posts/luiztiago/gulpjs.png
 related:
   - title: "Site Oficial"
     url: http://gulpjs.com/
@@ -29,7 +29,7 @@ Comparado com o Grunt, senti algumas vantagens interessantes, sendo mais simples
 
 E no dia 3 de Janeiro, já tivemos o seguinte anúncio no Twitter oficial:
 
-![Twitter @gulpjs - We have now 100 plugins!](http://morethings.io/images/twitter-gulpjs-100-plugins.png)
+![Twitter @gulpjs - We have now 100 plugins!](http://morethings.io/images/posts/luiztiago/twitter-gulpjs-100-plugins.png)
 
 A velocidade que está sendo feito os plugins é incrível. É um projeto muito recente e já tem muita contribuição da comunidade para conseguir avançar e nos ajudar cada vez mais em nossos projetos. Sem muito blá blá blá, vamos à pratica para ver sua simplicidade.
 
