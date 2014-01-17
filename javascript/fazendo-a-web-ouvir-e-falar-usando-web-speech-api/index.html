@@ -1,0 +1,345 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Fazendo a Web ouvir e falar usando Web Speech API &#8211; morethings.io</title>
+<meta name="description" content="Neste post é abordada a Web Speech API com detalhes, utilizando as interfaces de Speech Synthesis e Voice Recognition.">
+<meta name="keywords" content="">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.morethings.io/images/posts/luiztiago/web-speech-api.jpg">
+
+<meta name="twitter:title" content="Fazendo a Web ouvir e falar usando Web Speech API">
+<meta name="twitter:description" content="Neste post é abordada a Web Speech API com detalhes, utilizando as interfaces de Speech Synthesis e Voice Recognition.">
+<meta name="twitter:creator" content="@morethingsio">
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fazendo a Web ouvir e falar usando Web Speech API">
+<meta property="og:description" content="Neste post é abordada a Web Speech API com detalhes, utilizando as interfaces de Speech Synthesis e Voice Recognition.">
+<meta property="og:url" content="http://www.morethings.io/javascript/fazendo-a-web-ouvir-e-falar-usando-web-speech-api">
+<meta property="og:site_name" content="morethings.io">
+<meta property="og:image" content="http://images.luiztiago.com/mt.png">
+<meta property="og:type" content="website">
+
+<meta name="google-site-verification" content="uvPVqBq23eyYbMxC3O2qGYrJOJCSY7n6QNcJZcYzpyw">
+
+
+<link rel="canonical" href="http://www.morethings.io/javascript/fazendo-a-web-ouvir-e-falar-usando-web-speech-api">
+<link href="http://www.morethings.io/feed.xml" type="application/atom+xml" rel="alternate" title="morethings.io Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://www.morethings.io/assets/css/main.min.css">
+<!-- Webfonts -->
+<script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://www.morethings.io/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://www.morethings.io/images/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://www.morethings.io/images/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://www.morethings.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.morethings.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.morethings.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.morethings.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post" itemscope itemtype="http://schema.org/WebPage">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	    <ul>
+	        <li><a href="http://www.morethings.io" title="Inicio">Inicio</a></li>
+	        
+			<li>
+				
+					<a href="http://www.morethings.io/about">Sobre</a>
+				
+			</li>
+	        
+			<li>
+				
+					<a href="http://www.morethings.io/posts">Posts</a>
+				
+			</li>
+	        
+	        <li><a href="http://www.morethings.io/feed.xml" title="Atom/RSS feed">Feed</a></li>
+	        
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+
+
+<header class="masthead" itemscope itemtype="http://schema.org/Organization">
+	<div class="wrap">
+		<h1 class="site-title animated fadeIn"><a href="http://www.morethings.io">morethings.io</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">More things about HTML/JS/CSS</h2>
+	</div>
+</header><!-- /.masthead -->
+
+
+<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <img src="http://www.morethings.io/images/posts/luiztiago/web-speech-api.jpg" class="entry-feature-image" alt="Fazendo a Web ouvir e falar usando Web Speech API" itemprop="image">
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <span class="entry-tags"></span>
+        
+          <h1 class="entry-title" itemprop="headline">Fazendo a Web ouvir e falar usando Web Speech API</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        <img src="http://www.morethings.io/images/bio-photo.jpg" alt="Luiz Tiago photo" class="author-photo">
+        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.morethings.io/about" title="About Luiz Tiago" itemprop="url"><i class="icon-user"></i> Luiz Tiago</a></span></span>
+        <span class="entry-date date published"><time datetime="2014-01-17T15:00:00Z" itemprop="datePublished"><i class="icon-calendar-empty"></i> January 17, 2014</time></span>
+        
+        <span class="entry-comments"><i class="icon-comment-alt"></i> <a href="#disqus_thread">Comment</a></span>
+      </footer>
+      <div class="entry-content" itemprop="description">
+        <p>A Web Speech API adiciona <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#speechreco-section">voice recognition</a> (reconhecimento de voz, ou seja, voz para texto) e <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#tts-section">speech synthesis</a> (pronúncia de texto, ou seja, texto para voz). Neste post, iremos abordar as duas funcionalidades, mas com mais detalhes nesta última interface, por ser mais recente e já poder ser testada na última versão Canary do Google Chrome.</p>
+
+<h2 id="speech-synthesis-interface">Speech Synthesis Interface</h2>
+
+<p>Para o uso mais básico da API, é mais fácil que tirar pirulito de criança. Olha só!</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SpeechSynthesisUtterance</span><span class="p">(</span><span class="s1">&#39;more things dot io&#39;</span><span class="p">);</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">speechSynthesis</span><span class="p">.</span><span class="nx">speak</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Entretanto, também pode alterar alguns parâmetros como volume, velocidade da fala, pitch, voz e idioma, como vemos à seguir:</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SpeechSynthesisUtterance</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">voices</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">speechSynthesis</span><span class="p">.</span><span class="nx">getVoices</span><span class="p">();</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">voice</span> <span class="o">=</span> <span class="nx">voices</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span> <span class="c1">// Obs: algumas vozes não dão suporte a alterar alguns parâmetros</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">voiceURI</span> <span class="o">=</span> <span class="s1">&#39;native&#39;</span><span class="p">;</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">volume</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 0 to 1</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">rate</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 0.1 to 10</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">pitch</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">//0 to 2</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;Hello World&#39;</span><span class="p">;</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">lang</span> <span class="o">=</span> <span class="s1">&#39;en-US&#39;</span><span class="p">;</span>
+
+<span class="nx">msg</span><span class="p">.</span><span class="nx">onend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Finished in &#39;</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">elapsedTime</span> <span class="o">+</span> <span class="s1">&#39; seconds.&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">speechSynthesis</span><span class="p">.</span><span class="nx">speak</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="setando-a-voz">Setando a voz</h3>
+
+<p>A API também possibilita termos uma lista das vozes que estão sendo suportadas.</p>
+
+<div class="highlight"><pre><code class="js"><span class="nx">speechSynthesis</span><span class="p">.</span><span class="nx">getVoices</span><span class="p">().</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">voice</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">voice</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">voice</span><span class="p">.</span><span class="k">default</span> <span class="o">?</span> <span class="s1">&#39;(default)&#39;</span> <span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>Para setar uma voz diferente, basta setar no parâmetro <code>voice</code> do objeto instanciado, como vemos abaixo:</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SpeechSynthesisUtterance</span><span class="p">(</span><span class="s1">&#39;I see dead people!&#39;</span><span class="p">);</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">voice</span> <span class="o">=</span> <span class="nx">speechSynthesis</span><span class="p">.</span><span class="nx">getVoices</span><span class="p">().</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">voice</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">voice</span><span class="p">.</span><span class="nx">name</span> <span class="o">==</span> <span class="s1">&#39;Whisper&#39;</span><span class="p">;</span> <span class="p">})[</span><span class="mi">0</span><span class="p">];</span>
+<span class="nx">speechSynthesis</span><span class="p">.</span><span class="nx">speak</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="suporte-dos-browsers">Suporte dos browsers</h3>
+
+<p>Apenas o Chrome 33 (por enquanto, o Canary) tem o suporte completo a Web Speech API, enquanto o Safari do iOS7 tem suporte parcial. Mas isto não é nada demais, quando podemos usar <em>feature detection</em>, como vemos abaixo:</p>
+
+<div class="highlight"><pre><code class="js"><span class="k">if</span> <span class="p">(</span><span class="s1">&#39;speechSynthesis&#39;</span> <span class="k">in</span> <span class="nb">window</span><span class="p">)</span> <span class="p">{</span>
+ <span class="c1">// Synthesis support. Make your web apps talk!</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="s1">&#39;SpeechRecognition&#39;</span> <span class="k">in</span> <span class="nb">window</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Speech recognition support. Talk to your apps!</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Para testar, baixe a versão mais recente do <a href="https://www.google.com/intl/en/chrome/browser/canary.html">Google Chrome Canary</a>. Após instalá-lo, você pode testar através da demonstração criada pelo Eric Bidelman, chamada “<a href="http://www.moreawesomeweb.com/demos/speech_translate.html">More Awesome Web: features you’ve always wanted</a>” apresentada na Google I/O 2013.</p>
+
+<h2 id="speech-recognition-interface">Speech Recognition Interface</h2>
+
+<p>A <strong>Web Speech API</strong> possibilita adicionar bem facilmente reconhecimento de voz em suas páginas. Esta API possibilita um controle fino e flexível no reconhecimento de voz, e por já ter suas definições anteriormente que a <em>Speech Synthesis Interface</em>, já encontra-se disponível desde o Chrome versão 25+. Para entender melhor, iremos nos basear <a href="http://www.moreawesomeweb.com/demos/speech_translate.html">nesta demonstração</a> apresentada na Google I/O 2013, que é bem interessante.</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">recognition</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">webkitSpeechRecognition</span><span class="p">();</span>
+
+<span class="nx">recognition</span><span class="p">.</span><span class="nx">continuous</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="nx">recognition</span><span class="p">.</span><span class="nx">interimResults</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="nx">recognition</span><span class="p">.</span><span class="nx">onstart</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="nx">recognition</span><span class="p">.</span><span class="nx">onresult</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="nx">recognition</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="nx">recognition</span><span class="p">.</span><span class="nx">onend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+</code></pre></div>
+
+<p>O valor padrão para <code>continuous</code> é false, o que significa que quando o usuário parar de falar, o reconhecimento de voz vai acabar. Isto é ótimo para textos curtos, mas na demonstração, deixamos como <code>true</code> para o reconhecimento continuar mesmo se o usuário fizer uma pausa enquanto fala.</p>
+
+<p>O valor padrão para <code>interimResults</code> também é false, o que significa que apenas os resultados que forem retornados pelo “reconhecedor” são finais e não podem ser alterados.</p>
+
+<p>Para iniciar, o usuário clica no microfone ao lado e é disparado o método <code>start()</code> instanciado no objeto <code>recognition</code>.</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">function</span> <span class="nx">startButton</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">recognition</span><span class="p">.</span><span class="nx">lang</span> <span class="o">=</span> <span class="nx">select_dialect</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="nx">recognition</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Ao iniciar a captura de áudio, ele chama o handler <code>onstart</code>, e em seguida, para cada novo conjunto de palavras, ele chama o handler <code>onresult</code>.</p>
+
+<div class="highlight"><pre><code class="js"><span class="nx">recognition</span><span class="p">.</span><span class="nx">onresult</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">interim_transcript</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">resultIndex</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">results</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">isFinal</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">final_transcript</span> <span class="o">+=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">0</span><span class="p">].</span><span class="nx">transcript</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">interim_transcript</span> <span class="o">+=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">0</span><span class="p">].</span><span class="nx">transcript</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Este handler concatena todos os resultados recebidos em duas strings: <code>final_transcript</code> e <code>interim_transcript</code>. A primeira vai ser sempre todo o conteúdo transcrito, enquanto a última é esvaziada sempre que o handler é chamado.</p>
+
+<p>Você pode fazer um teste através desta <a href="https://www.google.com/intl/en/chrome/demos/speech.html">demonstração criada pela equipe do Google Chrome</a></p>
+
+<h2 id="qual-a-dificuldade">Qual a dificuldade?</h2>
+
+<p>Pois é, muito simples não é? Isto acontece com quase todas as APIs que são lançadas. Um pouquinho de estudo já faz com que você se torne um bom conhecedor do assunto. Não esquece de dar seu feedback abaixo :)</p>
+
+        
+          <aside class="entry-related">
+            <h4>Referências</h4>
+            <ul>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html" alt="Web Speech API Specification" title="Web Speech API Specification">Web Speech API Specification</a>
+                
+                  - W3C
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://updates.html5rocks.com/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API" alt="Voice Driven Web Apps: Introduction to the Web Speech API" title="Voice Driven Web Apps: Introduction to the Web Speech API">Voice Driven Web Apps: Introduction to the Web Speech API</a>
+                
+                  - HTML5 Rocks
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://updates.html5rocks.com/2014/01/Web-apps-that-talk---Introduction-to-the-Speech-Synthesis-API" alt="Web apps that talk - Introduction to the Speech Synthesis API" title="Web apps that talk - Introduction to the Speech Synthesis API">Web apps that talk - Introduction to the Speech Synthesis API</a>
+                
+                  - HTML5 Rocks
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://www.w3.org/community/speech-api/" alt="Speech API Community Group" title="Speech API Community Group">Speech API Community Group</a>
+                
+                  - W3C Community and Business Groups
+                
+              </li>
+              
+            </ul>
+          </aside>
+        
+        <div id="disqus_thread"></div><!-- /#disqus_thread -->
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://www.morethings.io/javascript/node/como-configurar-um-servidor-nodejs-para-producao" class="btn" title="Como configurar um servidor node.js para produção">Previous article</a>
+      
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2014 - morethings.io</span>
+<div class="social-icons">
+	<a href="http://twitter.com/morethingsio" title="Luiz Tiago on Twitter" target="_blank"><i class="icon-twitter icon-2x"></i></a>
+	<a href="http://facebook.com/morethings.io" title="Luiz Tiago on Facebook" target="_blank"><i class="icon-facebook icon-2x"></i></a>
+	
+	
+	
+	
+	
+	<a href="http://github.com/luiztiago/morethings.io" title="Luiz Tiago on Github" target="_blank"><i class="icon-github icon-2x"></i></a>
+	
+</div><!-- /.social-icons -->
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://www.morethings.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://www.morethings.io/assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31914656-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    
+
+    var disqus_shortname = 'morethingsio'; // required: replace example with your forum shortname
+    var disqus_url = 'http://www.morethings.io/javascript/fazendo-a-web-ouvir-e-falar-usando-web-speech-api/';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</body>
+</html>
