@@ -23,7 +23,7 @@ comments: true
 description: "Neste post é abordada a Web Speech API com detalhes, utilizando as interfaces de Speech Synthesis e Voice Recognition."
 ---
 
-A Web Speech API adiciona [voice recognition](https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#speechreco-section) (reconhecimento de voz, ou seja, voz para texto) e [speech synthesis](https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#tts-section) (pronúncia de texto, ou seja, texto para voz). Neste post, iremos abordar as duas funcionalidades, mas com mais detalhes nesta última interface, por ser mais recente e já poder ser testada na última versão Canary do Google Chrome.
+A Web Speech API adiciona [voice recognition](https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#speechreco-section) (reconhecimento de voz, ou seja, voz para texto) e [speech synthesis](https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#tts-section) (pronúncia de texto, ou seja, texto para voz). Neste post, iremos abordar as duas funcionalidades, mas com mais detalhes nesta última interface, por ser mais recente e já poder ser testada na última versão do [Google Chrome Canary](https://www.google.com/intl/en/chrome/browser/canary.html).
 
 ## Speech Synthesis Interface
 
