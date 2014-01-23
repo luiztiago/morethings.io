@@ -1,0 +1,361 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Como medir performance da sua aplicação usando User Timing API &#8211; morethings.io</title>
+<meta name="description" content="Se você deseja ter uma boa user experience em sua aplicação, é fundamental investir em performance. E para otimizá-la, você precisa ter números medidos e estes precisam ser bem precisos, para ajudar a encontrar os gargalos, fazer as melhorias e comparar os resultados. Mas como fazer estas medições com JavaScript?">
+<meta name="keywords" content="">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.morethings.io/images/posts/luiztiago/user-timing-api.jpg">
+
+<meta name="twitter:title" content="Como medir performance da sua aplicação usando User Timing API">
+<meta name="twitter:description" content="Se você deseja ter uma boa user experience em sua aplicação, é fundamental investir em performance. E para otimizá-la, você precisa ter números medidos e estes precisam ser bem precisos, para ajudar a encontrar os gargalos, fazer as melhorias e comparar os resultados. Mas como fazer estas medições com JavaScript?">
+<meta name="twitter:creator" content="@morethingsio">
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Como medir performance da sua aplicação usando User Timing API">
+<meta property="og:description" content="Se você deseja ter uma boa user experience em sua aplicação, é fundamental investir em performance. E para otimizá-la, você precisa ter números medidos e estes precisam ser bem precisos, para ajudar a encontrar os gargalos, fazer as melhorias e comparar os resultados. Mas como fazer estas medições com JavaScript?">
+<meta property="og:url" content="http://www.morethings.io/javascript/como-medir-performance-da-sua-aplicacao-usando-user-timing-api">
+<meta property="og:site_name" content="morethings.io">
+<meta property="og:image" content="http://images.luiztiago.com/mt.png">
+<meta property="og:type" content="website">
+
+<meta name="google-site-verification" content="uvPVqBq23eyYbMxC3O2qGYrJOJCSY7n6QNcJZcYzpyw">
+
+
+<link rel="canonical" href="http://www.morethings.io/javascript/como-medir-performance-da-sua-aplicacao-usando-user-timing-api">
+<link href="http://www.morethings.io/feed.xml" type="application/atom+xml" rel="alternate" title="morethings.io Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://www.morethings.io/assets/css/main.min.css">
+<!-- Webfonts -->
+<script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://www.morethings.io/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://www.morethings.io/images/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://www.morethings.io/images/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://www.morethings.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.morethings.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.morethings.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.morethings.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post" itemscope itemtype="http://schema.org/WebPage">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	    <ul>
+	        <li><a href="http://www.morethings.io" title="Inicio">Inicio</a></li>
+	        
+			<li>
+				
+					<a href="http://www.morethings.io/about">Sobre</a>
+				
+			</li>
+	        
+			<li>
+				
+					<a href="http://www.morethings.io/posts">Posts</a>
+				
+			</li>
+	        
+	        <li><a href="http://www.morethings.io/feed.xml" title="Atom/RSS feed">Feed</a></li>
+	        
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+
+
+<header class="masthead" itemscope itemtype="http://schema.org/Organization">
+	<div class="wrap">
+		<h1 class="site-title animated fadeIn"><a href="http://www.morethings.io">morethings.io</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">More things about HTML/JS/CSS</h2>
+	</div>
+</header><!-- /.masthead -->
+
+
+<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <img src="http://www.morethings.io/images/posts/luiztiago/user-timing-api.jpg" class="entry-feature-image" alt="Como medir performance da sua aplicação usando User Timing API" itemprop="image">
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <span class="entry-tags"></span>
+        
+          <h1 class="entry-title" itemprop="headline">Como medir performance da sua aplicação usando User Timing API</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        <img src="http://www.morethings.io/images/bio-photo.jpg" alt="Luiz Tiago photo" class="author-photo">
+        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.morethings.io/about" title="About Luiz Tiago" itemprop="url"><i class="icon-user"></i> Luiz Tiago</a></span></span>
+        <span class="entry-date date published"><time datetime="2014-01-23T09:00:00Z" itemprop="datePublished"><i class="icon-calendar-empty"></i> January 23, 2014</time></span>
+        
+        <span class="entry-comments"><i class="icon-comment-alt"></i> <a href="#disqus_thread">Comment</a></span>
+      </footer>
+      <div class="entry-content" itemprop="description">
+        <h1 id="como-medir-performance-da-sua-aplicao-usando-user-timing-api">Como medir performance da sua aplicação usando User Timing API</h1>
+
+<p>Se você deseja ter uma boa <em>user experience</em> em sua aplicação, é fundamental investir em performance. E para otimizá-la, você precisa ter números medidos e estes precisam ser bem precisos, para ajudar a encontrar os gargalos, fazer as melhorias e comparar os resultados. Mas como fazer estas medições com JavaScript?</p>
+
+<p>Abaixo seguem duas formas, que são as mais conhecidas, onde os desenvolvedores já usam há algum tempo. E logo após, apresento como utilizar a <strong>User Timing API</strong>, que foi divulgada há pouco mais de um mês.</p>
+
+<h2 id="usando-domtimestamp-com-datenow">Usando DOMTimeStamp com Date.now()</h2>
+
+<p>Durante muito tempo, os desenvolvedores usavam o <code>Date.now</code> para fazer estas medições. Abaixo podemos ver um exemplo comparando o tempo de execução de cada uma das funções <code>foo()</code> e <code>bar()</code>.</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">startTime</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+<span class="nx">foo</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">test1</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+
+<span class="nx">bar</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">test2</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">&quot;Test1 time: &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">test1</span> <span class="o">-</span> <span class="nx">startTime</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">&quot;Test2 time: &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">test2</span> <span class="o">-</span> <span class="nx">test1</span><span class="p">));</span>
+</code></pre></div>
+
+<p>O DOMTimeStamp retorna um número inteiro do tempo em milisegundos, que por sua vez, não possui muita precisão. E pra piorar, esta precisão varia entre os <em>user agents</em>, tornando-se não muito confiável.</p>
+
+<h2 id="usando-domhighrestimestamp-com-performancenow">Usando DOMHighResTimeStamp com performance.now()</h2>
+
+<p>Afim de proporcionar uma maior precisão, um novo tipo chamado <code>DOMHighResTimeStamp</code> foi criado. O valor retornado também é em milissegundos, só que desta vez é um <em>float</em>, aumentando a precisão para um <strong>milésimo de milésimo de segundo</strong>. Como o <a href="https://twitter.com/paul_irish">Paul Irish</a> mencionou “<a href="http://updates.html5rocks.com/2012/08/When-milliseconds-are-not-enough-performance-now">When milliseconds are not enough</a>” num post com este título. O código abaixo mostra um exemplo bem semelhante com o acima, porém desta vez, um pouco mais preciso.</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">startTime</span> <span class="o">=</span> <span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+<span class="nx">foo</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">test1</span> <span class="o">=</span> <span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+
+<span class="nx">bar</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">test2</span> <span class="o">=</span> <span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">&quot;Test1 time: &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">test1</span> <span class="o">-</span> <span class="nx">startTime</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">&quot;Test2 time: &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">test2</span> <span class="o">-</span> <span class="nx">test1</span><span class="p">));</span>
+</code></pre></div>
+
+<p>Isto por um tempo pareceu bem interessante, mas bem trabalhoso quando você precisa fazer estes comparativos em objetos e métodos diferentes. Para isso, é necessário armazenar estes dados em variáveis globais e tudo isso atrapalha muito quando você está analisando performance, principalmente quando nem os milissegundos são tão precisos.</p>
+
+<h2 id="user-timing-api">User Timing API</h2>
+
+<p>E agora a música toca bem mais fácil. Com a chegada da <em>User Timing API</em>, tudo parece ficar bem mais simples do que atualmente. A API disponibiliza funções que podem ser chamadas por métodos em diferentes lugares em sua aplicação, para nos levar onde realmente estão os gargalos.</p>
+
+<h3 id="usando-mark">Usando mark()</h3>
+
+<p>Este é o método principal em nosso toolkit. O <code>mark()</code> armazena o <em>timestamp</em> com a chave que foi passada. Pode-se executar o método em vários lugares da aplicação, registrando sempre o <em>timestamp</em> do momento em que foi executado. Inclusive, a especificação sugere uma série de nomes que podem ser interessantes e que são bem auto-explicativos, como <code>mark_fully_loaded</code>, <code>mark_fully_visible</code>, <code>mark_above_the_fold</code>.</p>
+
+<p>Por exemplo, poderíamos definir uma <em>mark</em> para quando a aplicação for totalmente carregada usando:</p>
+
+<div class="highlight"><pre><code class="js"><span class="nb">window</span><span class="p">.</span><span class="nx">performance</span><span class="p">.</span><span class="nx">mark</span><span class="p">(</span><span class="s1">&#39;mark_fully_loaded&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Pode-se definir varias <em>marks</em> ao longo da aplicação, reunindo bons registros de tempo para analisar e descobrir o que e quando nossa aplicação está fazendo determinada coisa.</p>
+
+<h3 id="calculando-medies-com-measure">Calculando medições com measure()</h3>
+
+<p>Depois de definir seus <em>marks</em>, você precisa medir o tempo decorrido entre eles. Para isso, existe o método <code>measure()</code>. Este método calcula o tempo decorrido entre as <em>marks</em>, e também pode medir o tempo entre seu <em>mark</em> e qualquer um dos nomes de eventos presentes na interface <a href="http://www.w3.org/TR/navigation-timing/#sec-navigation-timing-interface"><code>PerformanceTiming</code></a>.</p>
+
+<p>Por exemplo, você pode calcular o tempo entre DOM estar completo até o estado de sua aplicação estar 100% carregada, usando um código como este:</p>
+
+<div class="highlight"><pre><code class="js"><span class="nb">window</span><span class="p">.</span><span class="nx">performance</span><span class="p">.</span><span class="nx">measure</span><span class="p">(</span><span class="s1">&#39;measure_load_from_dom&#39;</span><span class="p">,</span> <span class="s1">&#39;domComplete&#39;</span><span class="p">,</span> <span class="s1">&#39;mark_fully_loaded&#39;</span><span class="p">);</span>
+<span class="c1">// O domComplete é o evento já conhecido pela interface PerformanceTiming</span>
+</code></pre></div>
+
+<p>Quando o <code>measure()</code> for executado, o resultado será armazenado independente das <em>marks</em> que forem setadas, para que possa ser analisado posteriormente. Isto permitirá que sua aplicação seja completamente executada, e só depois seja feita a análise dos dados.</p>
+
+<h3 id="descartando-com-clearmarks-e-clearmeasures">Descartando com clearMarks() e clearMeasures()</h3>
+
+<p>Algumas vezes pode ser necessário descartar <em>marks</em> que foram setadas e já foram medidas. Por exemplo, se fizer análise em algumas partes da ferramenta, e ao passar para outra parte, já não precise mais daquelas <em>marks</em>. Para isso, pode-se remover todas elas utilizando o <code>clearMarks()</code> sem parâmetros, ou definindo quais que deseja remover:</p>
+
+<div class="highlight"><pre><code class="js"><span class="nb">window</span><span class="p">.</span><span class="nx">peformance</span><span class="p">.</span><span class="nx">clearMarks</span><span class="p">(</span><span class="s1">&#39;mark_fully_loaded&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Da mesma forma, também existe o método <code>clearMeasures()</code>, só que desta vez para remover as medições (duh!).</p>
+
+<div class="highlight"><pre><code class="js"><span class="nb">window</span><span class="p">.</span><span class="nx">performance</span><span class="p">.</span><span class="nx">clearMeasures</span><span class="p">(</span><span class="s1">&#39;measure_load_from_dom&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Ambas utilizam as mesmas regras. Se não forem passados parâmetros, todas as medições serão removidas. Caso defina os parâmetros, apenas as que forem definidas serão removidas.</p>
+
+<h3 id="a-hora-de-fazer-acontecer">A hora de fazer acontecer</h3>
+
+<p>Tudo que vimos até agora são as formas de coletar dados e fazer as medições. Agora precisamos coletar e analisar estes dados.</p>
+
+<p>Com o método <code>getEntriesByTipe()</code>, permite-se obter todos os tempos das <em>marks</em> ou <em>measures</em>. Ele retornará uma lista em ordem cronológica, para ser visto na ordem em que os fatos aconteceram. Vejamos o código abaixo:</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">marks</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">performance</span><span class="p">.</span><span class="nx">getEntriesByType</span><span class="p">(</span><span class="s1">&#39;mark&#39;</span><span class="p">),</span>
+    <span class="nx">measures</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">performance</span><span class="p">.</span><span class="nx">getEntriesByType</span><span class="p">(</span><span class="s1">&#39;measure&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Também existe o método <code>getEntriesByName()</code> onde você pode usar o nome específico que foi setado na <em>mark</em> ou <em>measure</em>, como o código abaixo:</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">performance</span><span class="p">.</span><span class="nx">getEntriesByName</span><span class="p">(</span><span class="s1">&#39;mark_fully_loaded&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Isto retornará uma lista com um item (entry) contendo as seguintes propriedades:</p>
+
+<ul>
+  <li><code>name</code> que referencia o nome dado à <em>mark</em> ou <em>measure</em>;</li>
+  <li><code>entryType</code> que será uma String ‘mark’ ou ‘measure’;</li>
+  <li><code>startTime</code> o <em>timestamp</em> que foi iniciado;</li>
+  <li><code>duration</code> um <em>DOMHighResTimeStamp</em> com o tempo (se for uma <em>measure</em>). Caso seja uma <em>mark</em>, retornará valor 0.</li>
+</ul>
+
+<h3 id="mos--obra">Mãos à obra!</h3>
+
+<p>Agora que já conhecemos bem a <strong>User Interface API</strong>, vamos a um exemplo contendo tudo o que vimos até então.</p>
+
+<div class="highlight"><pre><code class="js"><span class="nx">performance</span><span class="p">.</span><span class="nx">mark</span><span class="p">(</span><span class="s2">&quot;startFoo&quot;</span><span class="p">);</span>
+<span class="nx">foo</span><span class="p">();</span>
+<span class="nx">performance</span><span class="p">.</span><span class="nx">mark</span><span class="p">(</span><span class="s2">&quot;endFoo&quot;</span><span class="p">);</span>
+
+<span class="c1">// Cria uma measure &quot;durationFoo&quot; que irá medir o tempo entre as marks startFoo e endFoo</span>
+<span class="nx">performance</span><span class="p">.</span><span class="nx">measure</span><span class="p">(</span><span class="s2">&quot;durationFoo&quot;</span><span class="p">,</span> <span class="s2">&quot;startFoo&quot;</span><span class="p">,</span> <span class="s2">&quot;endFoo&quot;</span><span class="p">);</span>
+
+<span class="c1">// Remove todas as Marks</span>
+<span class="nx">performance</span><span class="p">.</span><span class="nx">clearMarks</span><span class="p">();</span>
+<span class="c1">// Remove a measure &quot;durationFoo&quot;</span>
+<span class="nx">performance</span><span class="p">.</span><span class="nx">clearMeasure</span><span class="p">(</span><span class="s2">&quot;durationFoo&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Desta mesma forma, diversos casos podem ser medidos, como alguma ou todas as XHR de sua aplicação, ou apenas algum método específico que deseja analisar.</p>
+
+<p>Utilizar esta API não deve ser difícil para testar suas propriedades e métodos. Além disso, o suporte dos navegadores é muito bom. E para aqueles que não a suportam (principalmente o Firefox), um <a href="https://gist.github.com/pmeenan/5902672">polyfill já está disponível</a>. Então, mãos à obra!</p>
+
+        
+          <aside class="entry-related">
+            <h4>Referências</h4>
+            <ul>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://www.w3.org/TR/user-timing/" alt="User Timing API Specification" title="User Timing API Specification">User Timing API Specification</a>
+                
+                  - W3C
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://www.sitepoint.com/discovering-user-timing-api/" alt="Discovering the User Timing API" title="Discovering the User Timing API">Discovering the User Timing API</a>
+                
+                  - sitepoint
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://www.html5rocks.com/en/tutorials/webperformance/usertiming/" alt="User Timing API - Understanding your Web App" title="User Timing API - Understanding your Web App">User Timing API - Understanding your Web App</a>
+                
+                  - HTML5 Rocks
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://www.sitepoint.com/discovering-the-high-resolution-time-api/" alt="Discovering the High Resolution Time API" title="Discovering the High Resolution Time API">Discovering the High Resolution Time API</a>
+                
+                  - sitepoint
+                
+              </li>
+              
+            </ul>
+          </aside>
+        
+        <div id="disqus_thread"></div><!-- /#disqus_thread -->
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://www.morethings.io/javascript/fazendo-a-web-ouvir-e-falar-usando-web-speech-api" class="btn" title="Fazendo a Web ouvir e falar usando Web Speech API">Previous article</a>
+      
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2014 - morethings.io</span>
+<div class="social-icons">
+	<a href="http://twitter.com/morethingsio" title="Luiz Tiago on Twitter" target="_blank"><i class="icon-twitter icon-2x"></i></a>
+	<a href="http://facebook.com/morethings.io" title="Luiz Tiago on Facebook" target="_blank"><i class="icon-facebook icon-2x"></i></a>
+	
+	
+	
+	
+	
+	<a href="http://github.com/luiztiago/morethings.io" title="Luiz Tiago on Github" target="_blank"><i class="icon-github icon-2x"></i></a>
+	
+</div><!-- /.social-icons -->
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://www.morethings.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://www.morethings.io/assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31914656-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    
+
+    var disqus_shortname = 'morethingsio'; // required: replace example with your forum shortname
+    var disqus_url = 'http://www.morethings.io/javascript/como-medir-performance-da-sua-aplicacao-usando-user-timing-api/';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</body>
+</html>

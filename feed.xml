@@ -4,13 +4,154 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.morethings.io/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.morethings.io" />
-<updated>2014-01-17T16:07:51-03:00</updated>
+<updated>2014-01-23T01:03:51-03:00</updated>
 <id>http://www.morethings.io/</id>
 <author>
   <name>Luiz Tiago</name>
   <uri>http://www.morethings.io/</uri>
   <email>luiztiago@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Como medir performance da sua aplicação usando User Timing API]]></title>
+  <link>http://www.morethings.io/javascript/como-medir-performance-da-sua-aplicacao-usando-user-timing-api</link>
+  <id>http://www.morethings.io/javascript/como-medir-performance-da-sua-aplicacao-usando-user-timing-api</id>
+  <published>2014-01-23T09:00:00Z</published>
+  <updated>2014-01-23T09:00:00Z</updated>
+  <author>
+    <name>Luiz Tiago</name>
+    <uri>http://www.morethings.io</uri>
+    <email>luiztiago@gmail.com</email>
+  </author>
+  <content type="html">&lt;h1 id=&quot;como-medir-performance-da-sua-aplicao-usando-user-timing-api&quot;&gt;Como medir performance da sua aplicação usando User Timing API&lt;/h1&gt;
+
+&lt;p&gt;Se você deseja ter uma boa &lt;em&gt;user experience&lt;/em&gt; em sua aplicação, é fundamental investir em performance. E para otimizá-la, você precisa ter números medidos e estes precisam ser bem precisos, para ajudar a encontrar os gargalos, fazer as melhorias e comparar os resultados. Mas como fazer estas medições com JavaScript?&lt;/p&gt;
+
+&lt;p&gt;Abaixo seguem duas formas, que são as mais conhecidas, onde os desenvolvedores já usam há algum tempo. E logo após, apresento como utilizar a &lt;strong&gt;User Timing API&lt;/strong&gt;, que foi divulgada há pouco mais de um mês.&lt;/p&gt;
+
+&lt;h2 id=&quot;usando-domtimestamp-com-datenow&quot;&gt;Usando DOMTimeStamp com Date.now()&lt;/h2&gt;
+
+&lt;p&gt;Durante muito tempo, os desenvolvedores usavam o &lt;code&gt;Date.now&lt;/code&gt; para fazer estas medições. Abaixo podemos ver um exemplo comparando o tempo de execução de cada uma das funções &lt;code&gt;foo()&lt;/code&gt; e &lt;code&gt;bar()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;startTime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;test1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;test2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Test1 time: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;test1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;startTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Test2 time: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;test2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;test1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;O DOMTimeStamp retorna um número inteiro do tempo em milisegundos, que por sua vez, não possui muita precisão. E pra piorar, esta precisão varia entre os &lt;em&gt;user agents&lt;/em&gt;, tornando-se não muito confiável.&lt;/p&gt;
+
+&lt;h2 id=&quot;usando-domhighrestimestamp-com-performancenow&quot;&gt;Usando DOMHighResTimeStamp com performance.now()&lt;/h2&gt;
+
+&lt;p&gt;Afim de proporcionar uma maior precisão, um novo tipo chamado &lt;code&gt;DOMHighResTimeStamp&lt;/code&gt; foi criado. O valor retornado também é em milissegundos, só que desta vez é um &lt;em&gt;float&lt;/em&gt;, aumentando a precisão para um &lt;strong&gt;milésimo de milésimo de segundo&lt;/strong&gt;. Como o &lt;a href=&quot;https://twitter.com/paul_irish&quot;&gt;Paul Irish&lt;/a&gt; mencionou “&lt;a href=&quot;http://updates.html5rocks.com/2012/08/When-milliseconds-are-not-enough-performance-now&quot;&gt;When milliseconds are not enough&lt;/a&gt;” num post com este título. O código abaixo mostra um exemplo bem semelhante com o acima, porém desta vez, um pouco mais preciso.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;startTime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;test1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;test2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Test1 time: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;test1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;startTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Test2 time: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;test2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;test1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Isto por um tempo pareceu bem interessante, mas bem trabalhoso quando você precisa fazer estes comparativos em objetos e métodos diferentes. Para isso, é necessário armazenar estes dados em variáveis globais e tudo isso atrapalha muito quando você está analisando performance, principalmente quando nem os milissegundos são tão precisos.&lt;/p&gt;
+
+&lt;h2 id=&quot;user-timing-api&quot;&gt;User Timing API&lt;/h2&gt;
+
+&lt;p&gt;E agora a música toca bem mais fácil. Com a chegada da &lt;em&gt;User Timing API&lt;/em&gt;, tudo parece ficar bem mais simples do que atualmente. A API disponibiliza funções que podem ser chamadas por métodos em diferentes lugares em sua aplicação, para nos levar onde realmente estão os gargalos.&lt;/p&gt;
+
+&lt;h3 id=&quot;usando-mark&quot;&gt;Usando mark()&lt;/h3&gt;
+
+&lt;p&gt;Este é o método principal em nosso toolkit. O &lt;code&gt;mark()&lt;/code&gt; armazena o &lt;em&gt;timestamp&lt;/em&gt; com a chave que foi passada. Pode-se executar o método em vários lugares da aplicação, registrando sempre o &lt;em&gt;timestamp&lt;/em&gt; do momento em que foi executado. Inclusive, a especificação sugere uma série de nomes que podem ser interessantes e que são bem auto-explicativos, como &lt;code&gt;mark_fully_loaded&lt;/code&gt;, &lt;code&gt;mark_fully_visible&lt;/code&gt;, &lt;code&gt;mark_above_the_fold&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Por exemplo, poderíamos definir uma &lt;em&gt;mark&lt;/em&gt; para quando a aplicação for totalmente carregada usando:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mark&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;mark_fully_loaded&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Pode-se definir varias &lt;em&gt;marks&lt;/em&gt; ao longo da aplicação, reunindo bons registros de tempo para analisar e descobrir o que e quando nossa aplicação está fazendo determinada coisa.&lt;/p&gt;
+
+&lt;h3 id=&quot;calculando-medies-com-measure&quot;&gt;Calculando medições com measure()&lt;/h3&gt;
+
+&lt;p&gt;Depois de definir seus &lt;em&gt;marks&lt;/em&gt;, você precisa medir o tempo decorrido entre eles. Para isso, existe o método &lt;code&gt;measure()&lt;/code&gt;. Este método calcula o tempo decorrido entre as &lt;em&gt;marks&lt;/em&gt;, e também pode medir o tempo entre seu &lt;em&gt;mark&lt;/em&gt; e qualquer um dos nomes de eventos presentes na interface &lt;a href=&quot;http://www.w3.org/TR/navigation-timing/#sec-navigation-timing-interface&quot;&gt;&lt;code&gt;PerformanceTiming&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Por exemplo, você pode calcular o tempo entre DOM estar completo até o estado de sua aplicação estar 100% carregada, usando um código como este:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;measure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;measure_load_from_dom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;domComplete&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;mark_fully_loaded&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// O domComplete é o evento já conhecido pela interface PerformanceTiming&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Quando o &lt;code&gt;measure()&lt;/code&gt; for executado, o resultado será armazenado independente das &lt;em&gt;marks&lt;/em&gt; que forem setadas, para que possa ser analisado posteriormente. Isto permitirá que sua aplicação seja completamente executada, e só depois seja feita a análise dos dados.&lt;/p&gt;
+
+&lt;h3 id=&quot;descartando-com-clearmarks-e-clearmeasures&quot;&gt;Descartando com clearMarks() e clearMeasures()&lt;/h3&gt;
+
+&lt;p&gt;Algumas vezes pode ser necessário descartar &lt;em&gt;marks&lt;/em&gt; que foram setadas e já foram medidas. Por exemplo, se fizer análise em algumas partes da ferramenta, e ao passar para outra parte, já não precise mais daquelas &lt;em&gt;marks&lt;/em&gt;. Para isso, pode-se remover todas elas utilizando o &lt;code&gt;clearMarks()&lt;/code&gt; sem parâmetros, ou definindo quais que deseja remover:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;peformance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clearMarks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;mark_fully_loaded&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Da mesma forma, também existe o método &lt;code&gt;clearMeasures()&lt;/code&gt;, só que desta vez para remover as medições (duh!).&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clearMeasures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;measure_load_from_dom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Ambas utilizam as mesmas regras. Se não forem passados parâmetros, todas as medições serão removidas. Caso defina os parâmetros, apenas as que forem definidas serão removidas.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-hora-de-fazer-acontecer&quot;&gt;A hora de fazer acontecer&lt;/h3&gt;
+
+&lt;p&gt;Tudo que vimos até agora são as formas de coletar dados e fazer as medições. Agora precisamos coletar e analisar estes dados.&lt;/p&gt;
+
+&lt;p&gt;Com o método &lt;code&gt;getEntriesByTipe()&lt;/code&gt;, permite-se obter todos os tempos das &lt;em&gt;marks&lt;/em&gt; ou &lt;em&gt;measures&lt;/em&gt;. Ele retornará uma lista em ordem cronológica, para ser visto na ordem em que os fatos aconteceram. Vejamos o código abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;marks&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getEntriesByType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;mark&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;measures&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getEntriesByType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;measure&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Também existe o método &lt;code&gt;getEntriesByName()&lt;/code&gt; onde você pode usar o nome específico que foi setado na &lt;em&gt;mark&lt;/em&gt; ou &lt;em&gt;measure&lt;/em&gt;, como o código abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getEntriesByName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;mark_fully_loaded&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Isto retornará uma lista com um item (entry) contendo as seguintes propriedades:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;name&lt;/code&gt; que referencia o nome dado à &lt;em&gt;mark&lt;/em&gt; ou &lt;em&gt;measure&lt;/em&gt;;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;entryType&lt;/code&gt; que será uma String ‘mark’ ou ‘measure’;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;startTime&lt;/code&gt; o &lt;em&gt;timestamp&lt;/em&gt; que foi iniciado;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;duration&lt;/code&gt; um &lt;em&gt;DOMHighResTimeStamp&lt;/em&gt; com o tempo (se for uma &lt;em&gt;measure&lt;/em&gt;). Caso seja uma &lt;em&gt;mark&lt;/em&gt;, retornará valor 0.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;mos--obra&quot;&gt;Mãos à obra!&lt;/h3&gt;
+
+&lt;p&gt;Agora que já conhecemos bem a &lt;strong&gt;User Interface API&lt;/strong&gt;, vamos a um exemplo contendo tudo o que vimos até então.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mark&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;startFoo&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mark&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;endFoo&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Cria uma measure &amp;quot;durationFoo&amp;quot; que irá medir o tempo entre as marks startFoo e endFoo&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;measure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;durationFoo&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;startFoo&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;endFoo&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Remove todas as Marks&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clearMarks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Remove a measure &amp;quot;durationFoo&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;performance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clearMeasure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;durationFoo&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Desta mesma forma, diversos casos podem ser medidos, como alguma ou todas as XHR de sua aplicação, ou apenas algum método específico que deseja analisar.&lt;/p&gt;
+
+&lt;p&gt;Utilizar esta API não deve ser difícil para testar suas propriedades e métodos. Além disso, o suporte dos navegadores é muito bom. E para aqueles que não a suportam (principalmente o Firefox), um &lt;a href=&quot;https://gist.github.com/pmeenan/5902672&quot;&gt;polyfill já está disponível&lt;/a&gt;. Então, mãos à obra!&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.morethings.io/javascript/como-medir-performance-da-sua-aplicacao-usando-user-timing-api&quot;&gt;Como medir performance da sua aplicação usando User Timing API&lt;/a&gt; was originally published by Luiz Tiago at &lt;a href=&quot;http://www.morethings.io&quot;&gt;morethings.io&lt;/a&gt; on January 23, 2014.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
