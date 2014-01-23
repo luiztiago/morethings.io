@@ -23,8 +23,6 @@ comments: true
 description: "Se você deseja ter uma boa user experience em sua aplicação, é fundamental investir em performance. E para otimizá-la, você precisa ter números medidos e estes precisam ser bem precisos, para ajudar a encontrar os gargalos, fazer as melhorias e comparar os resultados. Mas como fazer estas medições com JavaScript?"
 ---
 
-# Como medir performance da sua aplicação usando User Timing API
-
 Se você deseja ter uma boa *user experience* em sua aplicação, é fundamental investir em performance. E para otimizá-la, você precisa ter números medidos e estes precisam ser bem precisos, para ajudar a encontrar os gargalos, fazer as melhorias e comparar os resultados. Mas como fazer estas medições com JavaScript?
 
 Abaixo seguem duas formas, que são as mais conhecidas, onde os desenvolvedores já usam há algum tempo. E logo após, apresento como utilizar a **User Timing API**, que foi divulgada há pouco mais de um mês.
