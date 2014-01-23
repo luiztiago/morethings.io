@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.morethings.io/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.morethings.io" />
-<updated>2014-01-23T01:03:51-03:00</updated>
+<updated>2014-01-23T01:05:58-03:00</updated>
 <id>http://www.morethings.io/</id>
 <author>
   <name>Luiz Tiago</name>
@@ -24,9 +24,7 @@
     <uri>http://www.morethings.io</uri>
     <email>luiztiago@gmail.com</email>
   </author>
-  <content type="html">&lt;h1 id=&quot;como-medir-performance-da-sua-aplicao-usando-user-timing-api&quot;&gt;Como medir performance da sua aplicação usando User Timing API&lt;/h1&gt;
-
-&lt;p&gt;Se você deseja ter uma boa &lt;em&gt;user experience&lt;/em&gt; em sua aplicação, é fundamental investir em performance. E para otimizá-la, você precisa ter números medidos e estes precisam ser bem precisos, para ajudar a encontrar os gargalos, fazer as melhorias e comparar os resultados. Mas como fazer estas medições com JavaScript?&lt;/p&gt;
+  <content type="html">&lt;p&gt;Se você deseja ter uma boa &lt;em&gt;user experience&lt;/em&gt; em sua aplicação, é fundamental investir em performance. E para otimizá-la, você precisa ter números medidos e estes precisam ser bem precisos, para ajudar a encontrar os gargalos, fazer as melhorias e comparar os resultados. Mas como fazer estas medições com JavaScript?&lt;/p&gt;
 
 &lt;p&gt;Abaixo seguem duas formas, que são as mais conhecidas, onde os desenvolvedores já usam há algum tempo. E logo após, apresento como utilizar a &lt;strong&gt;User Timing API&lt;/strong&gt;, que foi divulgada há pouco mais de um mês.&lt;/p&gt;
 
