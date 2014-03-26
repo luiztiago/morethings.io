@@ -1,0 +1,288 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Bootstrap: como customizá-lo sem ferir os princípios do CSS &#8211; morethings.io</title>
+<meta name="description" content="Bootstrap: Ele chegou e salvou a vida de muitos dev's, principalmente os que nunca foram tão atenciosos com interfaces. Com pouco tempo, nós passamos a vê-lo em todos os sites e aplicações que podemos imaginar. E pra se tornar um pouco diferente do mundo, vem as customizações que nem sempre são feitas da melhor forma.">
+<meta name="keywords" content="">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.morethings.io/images/posts/luiztiago/bootstrap.png">
+
+<meta name="twitter:title" content="Bootstrap: como customizá-lo sem ferir os princípios do CSS">
+<meta name="twitter:description" content="Bootstrap: Ele chegou e salvou a vida de muitos dev's, principalmente os que nunca foram tão atenciosos com interfaces. Com pouco tempo, nós passamos a vê-lo em todos os sites e aplicações que podemos imaginar. E pra se tornar um pouco diferente do mundo, vem as customizações que nem sempre são feitas da melhor forma.">
+<meta name="twitter:creator" content="@morethingsio">
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bootstrap: como customizá-lo sem ferir os princípios do CSS">
+<meta property="og:description" content="Bootstrap: Ele chegou e salvou a vida de muitos dev's, principalmente os que nunca foram tão atenciosos com interfaces. Com pouco tempo, nós passamos a vê-lo em todos os sites e aplicações que podemos imaginar. E pra se tornar um pouco diferente do mundo, vem as customizações que nem sempre são feitas da melhor forma.">
+<meta property="og:url" content="http://www.morethings.io/css/bootstrap-como-customiza-lo-sem-ferir-os-principios-do-css">
+<meta property="og:site_name" content="morethings.io">
+<meta property="og:image" content="http://images.luiztiago.com/mt.png">
+<meta property="og:type" content="website">
+
+<meta name="google-site-verification" content="uvPVqBq23eyYbMxC3O2qGYrJOJCSY7n6QNcJZcYzpyw">
+
+
+<link rel="canonical" href="http://www.morethings.io/css/bootstrap-como-customiza-lo-sem-ferir-os-principios-do-css">
+<link href="http://www.morethings.io/feed.xml" type="application/atom+xml" rel="alternate" title="morethings.io Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://www.morethings.io/assets/css/main.min.css">
+<!-- Webfonts -->
+<script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://www.morethings.io/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://www.morethings.io/images/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://www.morethings.io/images/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://www.morethings.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.morethings.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.morethings.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.morethings.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post" itemscope itemtype="http://schema.org/WebPage">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	    <ul>
+	        <li><a href="http://www.morethings.io" title="Inicio">Inicio</a></li>
+	        
+			<li>
+				
+					<a href="http://www.morethings.io/about">Sobre</a>
+				
+			</li>
+	        
+			<li>
+				
+					<a href="http://www.morethings.io/posts">Posts</a>
+				
+			</li>
+	        
+	        <li><a href="http://www.morethings.io/feed.xml" title="Atom/RSS feed">Feed</a></li>
+	        
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+
+
+<header class="masthead" itemscope itemtype="http://schema.org/Organization">
+	<div class="wrap">
+		<h1 class="site-title animated fadeIn"><a href="http://www.morethings.io">morethings.io</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">More things about HTML/JS/CSS</h2>
+	</div>
+</header><!-- /.masthead -->
+
+
+<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <img src="http://www.morethings.io/images/posts/luiztiago/bootstrap.png" class="entry-feature-image" alt="Bootstrap: como customizá-lo sem ferir os princípios do CSS" itemprop="image">
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <span class="entry-tags"></span>
+        
+          <h1 class="entry-title" itemprop="headline">Bootstrap: como customizá-lo sem ferir os princípios do CSS</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        <img src="http://www.morethings.io/images/bio-photo.jpg" alt="Luiz Tiago photo" class="author-photo">
+        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.morethings.io/about" title="About Luiz Tiago" itemprop="url"><i class="icon-user"></i> Luiz Tiago</a></span></span>
+        <span class="entry-date date published"><time datetime="2014-03-26T09:00:00Z" itemprop="datePublished"><i class="icon-calendar-empty"></i> March 26, 2014</time></span>
+        
+        <span class="entry-comments"><i class="icon-comment-alt"></i> <a href="#disqus_thread">Comment</a></span>
+      </footer>
+      <div class="entry-content" itemprop="description">
+        <p>Hey guys! Acredito que todos nós, desenvolvedores, passamos por isso. Às vezes nos bate um pouco de angústia quando vemos alguma coisa que parece ser tão lógica deixar de ser feita em alguns projetos. Depois que o sangue esfria, surge a ideia de ajudar um pouco o mundo dos devs, transformando algumas dicas de como não seguir o caminho das trevas, em um simples post.</p>
+
+<p>Hoje tirei pra falar do Bootstrap. O Bootstrap é um dos casos que atualmente vem sofrendo um pouco com isso. Ele chegou e salvou a vida de muitos dev’s, principalmente os que nunca foram tão atenciosos com interfaces. Com pouco tempo, nós passamos a vê-lo em todos os sites e aplicações que podemos imaginar. E pra se tornar um pouco diferente do mundo, vem as customizações que nem sempre são feitas da melhor forma.</p>
+
+<p>Depois de ver algumas coisas rotineiras acontecendo em alguns projetos, decidi materializar essas dicas, baseadas em minha opinião, e tentar ajudar um pouco nosso mundo. Sintam-se à vontade pra acrescentar algo, sugerir, criticar ou qualquer outra coisa.</p>
+
+<h2 id="leia-a-documentao">Leia a documentação</h2>
+
+<p>O projeto do Bootstrap é magnífico. E algumas dicas fundamentais, estão escritas na documentação. Se você vai trabalhar com <a href="http://getbootstrap.com/css/#less">Less</a>, com <a href="http://getbootstrap.com/css/#sass">Sass</a>, ou se prefere <a href="http://getbootstrap.com/customize/">customizar direto no site do próprio Bootstrap</a>. Independente de qual caminho seguir, a documentação vai lhe dar o rumo certo.</p>
+
+<p>Particularmente, não gosto muito de gerar o arquivo customizado direto do site. Com isso, as suas mudanças vão vir junto com todas as regras do tema, e podem dificultar quando for preciso atualizar o framework. O arquivo <code>bootstrap-theme.css</code> gerado pode não ser mais 100% compatível, e caso isso aconteça, será preciso atualizá-lo também e as regras de sua customização serão dificilmente lembradas.</p>
+
+<h2 id="no-altere-o-arquivo-do-framework">Não altere o arquivo do framework</h2>
+
+<p>Isto é geral. Nunca deve-se alterar o arquivo de uma biblioteca/framework/plugin ou qualquer coisa que seja. Você terá uma enorme dor de cabeça quando for fazer alguma atualização, ou saber qual versão você está trabalhando. E aquilo ali não foi feito para ser alterado, concorda?</p>
+
+<p><strong>“Ah, mas eu queria alterar algumas coisas. Como faço?”</strong></p>
+
+<p>Crie um arquivo a parte e defina suas regras com o mesmo conceito de override que você deve ter aprendido quando começou a programar.</p>
+
+<div class="highlight"><pre><code class="css"><span class="o">&lt;</span><span class="nt">link</span> <span class="nt">href</span><span class="o">=</span><span class="s2">&quot;assets/css/bootstrap/bootstrap.min.css&quot;</span> <span class="nt">type</span><span class="o">=</span><span class="s2">&quot;text/css&quot;</span> <span class="nt">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nt">link</span> <span class="nt">href</span><span class="o">=</span><span class="s2">&quot;assets/css/main.css&quot;</span> <span class="nt">type</span><span class="o">=</span><span class="s2">&quot;text/css&quot;</span> <span class="nt">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="o">/&gt;</span>
+</code></pre></div>
+
+<p><strong>Ex.: Quero alterar o <em>background-color</em> da <code>table-striped</code> do Bootstrap.</strong></p>
+
+<p>Simplesmente inspeciona o elemento para ver qual seletor está sendo usado para tal definição que você quer mudar. Com isso, você repete o seletor e define apenas as regras que você precisa alterar no seu arquivo de customização, que no caso o escolhido foi o <code>main.css</code>.</p>
+
+<div class="highlight"><pre><code class="css"><span class="nc">.table-striped</span><span class="o">&gt;</span><span class="nt">tbody</span><span class="o">&gt;</span><span class="nt">tr</span><span class="nd">:nth-child</span><span class="o">(</span><span class="nt">odd</span><span class="o">)&gt;</span><span class="nt">td</span><span class="o">,</span>
+<span class="nc">.table-striped</span><span class="o">&gt;</span><span class="nt">tbody</span><span class="o">&gt;</span><span class="nt">tr</span><span class="nd">:nth-child</span><span class="o">(</span><span class="nt">odd</span><span class="o">)&gt;</span><span class="nt">th</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="m">#ccc</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Lembre-se: você não deve usar <code>!important</code> também. Isto não tema absolutamente <strong>nenhuma</strong> necessidade! <strong>Nunca!</strong></p>
+
+<p>Se o arquivo do seu “override” está sendo declarado depois e você está usando o mesmo seletor para definição das regras, as regras que forem definidas no seu arquivo <code>main.css</code> terão prioridade sob as definidas pelo Bootstrap. Caso tenha alguma dúvida de como isso funciona, sugiro procurar por algum artigo que fale sobre cálculo de especificidade.</p>
+
+<h2 id="evite-usar-classes-que-marcam-valoresposies">Evite usar classes que marcam valores/posições</h2>
+
+<p>Apesar da idade, eu participei um pouco da era das cavernas no desenvolvimento. Trabalhei com frames, tabelas, até surgir o tão sonhado termo <em>tableless</em> que nos fazia desenvolver sem usar as tão odiadas tabelas, e em paralelo, os nossos tão sonhados arquivos de estilo (CSS).</p>
+
+<p>Mas por que fiz questão de voltar no tempo? Uma das coisas tão agraciadas com o surgimento das folhas de estilo, era concentrar as regras de formatação no arquivo CSS. E quando precisar alterar qualquer formatação, apenas estes arquivos precisavam ser alterados, e a mágica estaria feita.</p>
+
+<p>Se for utilizado, principalmente de maneira repetida, classes como <code>pull-left</code> para <code>float:left</code>, <code>text-center</code> para <code>text-align: center</code>, <code>col-sm-offset-2</code> para um simples espaçamento, qualquer alteração no layout do projeto, pode lhe custar muito caro.</p>
+
+<p>Imagine que todo título da página interna de um simples site possui a classe <code>text-center</code> para centralizá-lo. Um belo dia, o cliente ou o designer pedem para alinhá-lo do lado esquerdo. Qual a solução?</p>
+
+<ul>
+  <li>Remover o text-center em todos os arquivos?</li>
+  <li>Alterar o CSS para que a classe <code>text-center</code> seja agora <code>text-align: left</code>?</li>
+  <li>Sentar e chorar?</li>
+</ul>
+
+<p>Neste caso, no arquivo de customização, deveria ter apenas uma simples regra como exemplificado abaixo. E este arquivo seria o único alterado para uma mudança como essa, tão besta.</p>
+
+<div class="highlight"><pre><code class="css"><span class="nt">section</span> <span class="nt">h2</span> <span class="p">{</span>
+  <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Não é porque o bootstrap cria uma classe e um mixin para <code>text-center</code> que você não pode usar os princípios básicos de CSS em seu projeto. Uma escolha como essa pode lhe custar bem caro.</p>
+
+<h2 id="pesquisa">Pesquisa</h2>
+
+<p>Isto nunca é demais. Aprender com erros é bem comum. Mas nós não precisamos errar para aprender, podemos também aprender com o erro dos outros. Não custa pesquisar, ver como os grandes projetos funcionam, ou até mesmo perguntar em qualquer grupo ou lista de discussão do tema. Com certeza alguém já teve um problema como o que você está tendo, ou pode ter.</p>
+
+        
+          <aside class="entry-related">
+            <h4>Referências</h4>
+            <ul>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://getbootstrap.com" alt="Bootstrap" title="Bootstrap">Bootstrap</a>
+                
+                  - Twitter
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://getbootstrap.com/customize" alt="Bootstrap Customize" title="Bootstrap Customize">Bootstrap Customize</a>
+                
+                  - Twitter
+                
+              </li>
+              
+            </ul>
+          </aside>
+        
+        <div id="disqus_thread"></div><!-- /#disqus_thread -->
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://www.morethings.io/javascript/como-medir-performance-da-sua-aplicacao-usando-user-timing-api" class="btn" title="Como medir performance da sua aplicação usando User Timing API">Previous article</a>
+      
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2014 - morethings.io</span>
+<div class="social-icons">
+	<a href="http://twitter.com/morethingsio" title="Luiz Tiago on Twitter" target="_blank"><i class="icon-twitter icon-2x"></i></a>
+	<a href="http://facebook.com/morethings.io" title="Luiz Tiago on Facebook" target="_blank"><i class="icon-facebook icon-2x"></i></a>
+	
+	
+	
+	
+	
+	<a href="http://github.com/luiztiago/morethings.io" title="Luiz Tiago on Github" target="_blank"><i class="icon-github icon-2x"></i></a>
+	
+</div><!-- /.social-icons -->
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://www.morethings.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://www.morethings.io/assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31914656-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    
+
+    var disqus_shortname = 'morethingsio'; // required: replace example with your forum shortname
+    var disqus_url = 'http://www.morethings.io/css/bootstrap-como-customiza-lo-sem-ferir-os-principios-do-css/';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</body>
+</html>

@@ -4,13 +4,95 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.morethings.io/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.morethings.io" />
-<updated>2014-01-23T11:51:16-03:00</updated>
+<updated>2014-03-26T02:04:40-03:00</updated>
 <id>http://www.morethings.io/</id>
 <author>
   <name>Luiz Tiago</name>
   <uri>http://www.morethings.io/</uri>
   <email>luiztiago@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Bootstrap: como customizá-lo sem ferir os princípios do CSS]]></title>
+  <link>http://www.morethings.io/css/bootstrap-como-customiza-lo-sem-ferir-os-principios-do-css</link>
+  <id>http://www.morethings.io/css/bootstrap-como-customiza-lo-sem-ferir-os-principios-do-css</id>
+  <published>2014-03-26T09:00:00Z</published>
+  <updated>2014-03-26T09:00:00Z</updated>
+  <author>
+    <name>Luiz Tiago</name>
+    <uri>http://www.morethings.io</uri>
+    <email>luiztiago@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;Hey guys! Acredito que todos nós, desenvolvedores, passamos por isso. Às vezes nos bate um pouco de angústia quando vemos alguma coisa que parece ser tão lógica deixar de ser feita em alguns projetos. Depois que o sangue esfria, surge a ideia de ajudar um pouco o mundo dos devs, transformando algumas dicas de como não seguir o caminho das trevas, em um simples post.&lt;/p&gt;
+
+&lt;p&gt;Hoje tirei pra falar do Bootstrap. O Bootstrap é um dos casos que atualmente vem sofrendo um pouco com isso. Ele chegou e salvou a vida de muitos dev’s, principalmente os que nunca foram tão atenciosos com interfaces. Com pouco tempo, nós passamos a vê-lo em todos os sites e aplicações que podemos imaginar. E pra se tornar um pouco diferente do mundo, vem as customizações que nem sempre são feitas da melhor forma.&lt;/p&gt;
+
+&lt;p&gt;Depois de ver algumas coisas rotineiras acontecendo em alguns projetos, decidi materializar essas dicas, baseadas em minha opinião, e tentar ajudar um pouco nosso mundo. Sintam-se à vontade pra acrescentar algo, sugerir, criticar ou qualquer outra coisa.&lt;/p&gt;
+
+&lt;h2 id=&quot;leia-a-documentao&quot;&gt;Leia a documentação&lt;/h2&gt;
+
+&lt;p&gt;O projeto do Bootstrap é magnífico. E algumas dicas fundamentais, estão escritas na documentação. Se você vai trabalhar com &lt;a href=&quot;http://getbootstrap.com/css/#less&quot;&gt;Less&lt;/a&gt;, com &lt;a href=&quot;http://getbootstrap.com/css/#sass&quot;&gt;Sass&lt;/a&gt;, ou se prefere &lt;a href=&quot;http://getbootstrap.com/customize/&quot;&gt;customizar direto no site do próprio Bootstrap&lt;/a&gt;. Independente de qual caminho seguir, a documentação vai lhe dar o rumo certo.&lt;/p&gt;
+
+&lt;p&gt;Particularmente, não gosto muito de gerar o arquivo customizado direto do site. Com isso, as suas mudanças vão vir junto com todas as regras do tema, e podem dificultar quando for preciso atualizar o framework. O arquivo &lt;code&gt;bootstrap-theme.css&lt;/code&gt; gerado pode não ser mais 100% compatível, e caso isso aconteça, será preciso atualizá-lo também e as regras de sua customização serão dificilmente lembradas.&lt;/p&gt;
+
+&lt;h2 id=&quot;no-altere-o-arquivo-do-framework&quot;&gt;Não altere o arquivo do framework&lt;/h2&gt;
+
+&lt;p&gt;Isto é geral. Nunca deve-se alterar o arquivo de uma biblioteca/framework/plugin ou qualquer coisa que seja. Você terá uma enorme dor de cabeça quando for fazer alguma atualização, ou saber qual versão você está trabalhando. E aquilo ali não foi feito para ser alterado, concorda?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;“Ah, mas eu queria alterar algumas coisas. Como faço?”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Crie um arquivo a parte e defina suas regras com o mesmo conceito de override que você deve ter aprendido quando começou a programar.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;css&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;assets/css/bootstrap/bootstrap.min.css&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;assets/css/main.css&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Ex.: Quero alterar o &lt;em&gt;background-color&lt;/em&gt; da &lt;code&gt;table-striped&lt;/code&gt; do Bootstrap.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Simplesmente inspeciona o elemento para ver qual seletor está sendo usado para tal definição que você quer mudar. Com isso, você repete o seletor e define apenas as regras que você precisa alterar no seu arquivo de customização, que no caso o escolhido foi o &lt;code&gt;main.css&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.table-striped&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;tbody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;tr&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:nth-child&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;odd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;td&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.table-striped&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;tbody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;tr&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:nth-child&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;odd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;th&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#ccc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Lembre-se: você não deve usar &lt;code&gt;!important&lt;/code&gt; também. Isto não tema absolutamente &lt;strong&gt;nenhuma&lt;/strong&gt; necessidade! &lt;strong&gt;Nunca!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Se o arquivo do seu “override” está sendo declarado depois e você está usando o mesmo seletor para definição das regras, as regras que forem definidas no seu arquivo &lt;code&gt;main.css&lt;/code&gt; terão prioridade sob as definidas pelo Bootstrap. Caso tenha alguma dúvida de como isso funciona, sugiro procurar por algum artigo que fale sobre cálculo de especificidade.&lt;/p&gt;
+
+&lt;h2 id=&quot;evite-usar-classes-que-marcam-valoresposies&quot;&gt;Evite usar classes que marcam valores/posições&lt;/h2&gt;
+
+&lt;p&gt;Apesar da idade, eu participei um pouco da era das cavernas no desenvolvimento. Trabalhei com frames, tabelas, até surgir o tão sonhado termo &lt;em&gt;tableless&lt;/em&gt; que nos fazia desenvolver sem usar as tão odiadas tabelas, e em paralelo, os nossos tão sonhados arquivos de estilo (CSS).&lt;/p&gt;
+
+&lt;p&gt;Mas por que fiz questão de voltar no tempo? Uma das coisas tão agraciadas com o surgimento das folhas de estilo, era concentrar as regras de formatação no arquivo CSS. E quando precisar alterar qualquer formatação, apenas estes arquivos precisavam ser alterados, e a mágica estaria feita.&lt;/p&gt;
+
+&lt;p&gt;Se for utilizado, principalmente de maneira repetida, classes como &lt;code&gt;pull-left&lt;/code&gt; para &lt;code&gt;float:left&lt;/code&gt;, &lt;code&gt;text-center&lt;/code&gt; para &lt;code&gt;text-align: center&lt;/code&gt;, &lt;code&gt;col-sm-offset-2&lt;/code&gt; para um simples espaçamento, qualquer alteração no layout do projeto, pode lhe custar muito caro.&lt;/p&gt;
+
+&lt;p&gt;Imagine que todo título da página interna de um simples site possui a classe &lt;code&gt;text-center&lt;/code&gt; para centralizá-lo. Um belo dia, o cliente ou o designer pedem para alinhá-lo do lado esquerdo. Qual a solução?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Remover o text-center em todos os arquivos?&lt;/li&gt;
+  &lt;li&gt;Alterar o CSS para que a classe &lt;code&gt;text-center&lt;/code&gt; seja agora &lt;code&gt;text-align: left&lt;/code&gt;?&lt;/li&gt;
+  &lt;li&gt;Sentar e chorar?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Neste caso, no arquivo de customização, deveria ter apenas uma simples regra como exemplificado abaixo. E este arquivo seria o único alterado para uma mudança como essa, tão besta.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;h2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;text-align&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Não é porque o bootstrap cria uma classe e um mixin para &lt;code&gt;text-center&lt;/code&gt; que você não pode usar os princípios básicos de CSS em seu projeto. Uma escolha como essa pode lhe custar bem caro.&lt;/p&gt;
+
+&lt;h2 id=&quot;pesquisa&quot;&gt;Pesquisa&lt;/h2&gt;
+
+&lt;p&gt;Isto nunca é demais. Aprender com erros é bem comum. Mas nós não precisamos errar para aprender, podemos também aprender com o erro dos outros. Não custa pesquisar, ver como os grandes projetos funcionam, ou até mesmo perguntar em qualquer grupo ou lista de discussão do tema. Com certeza alguém já teve um problema como o que você está tendo, ou pode ter.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://www.morethings.io/css/bootstrap-como-customiza-lo-sem-ferir-os-principios-do-css&quot;&gt;Bootstrap: como customizá-lo sem ferir os princípios do CSS&lt;/a&gt; was originally published by Luiz Tiago at &lt;a href=&quot;http://www.morethings.io&quot;&gt;morethings.io&lt;/a&gt; on March 26, 2014.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
