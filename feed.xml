@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://www.morethings.io/feed.xml" />
 <link rel="alternate" type="text/html" href="http://www.morethings.io" />
-<updated>2014-08-25T22:30:11-03:00</updated>
+<updated>2014-08-25T22:35:13-03:00</updated>
 <id>http://www.morethings.io/</id>
 <author>
   <name>Luiz Tiago</name>
@@ -24,9 +24,7 @@
     <uri>http://www.morethings.io</uri>
     <email>luiztiago@gmail.com</email>
   </author>
-  <content type="html">&lt;h1 id=&quot;css-position-sticky&quot;&gt;CSS Position Sticky&lt;/h1&gt;
-
-&lt;p&gt;Estamos passando por mais uma tendência no nosso mercado de desenvolvimento. Assim como na área de moda/design (e como os leigos comparam os estudantes de Webdesign), também vivemos num mundo de tendências, e atualmente é difícil encontrar um site ou sistema recente que não use alguns destes conceitos. Entre eles, permanecer com a navegação visível em toda a aplicação.&lt;/p&gt;
+  <content type="html">&lt;p&gt;Estamos passando por mais uma tendência no nosso mercado de desenvolvimento. Assim como na área de moda/design (e como os leigos comparam os estudantes de Webdesign), também vivemos num mundo de tendências, e atualmente é difícil encontrar um site ou sistema recente que não use alguns destes conceitos. Entre eles, permanecer com a navegação visível em toda a aplicação.&lt;/p&gt;
 
 &lt;p&gt;Nos últimos anos, diversas soluções baseadas em Javascript foram criadas e agora podemos ver uma luz no fim do túnel, pois será possível utilizar apenas CSS para resolver este problema. Palmas!&lt;/p&gt;
 
