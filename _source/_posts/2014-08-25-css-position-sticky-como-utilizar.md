@@ -20,8 +20,6 @@ comments: true
 description: "Estamos passando por mais uma tendência no nosso mercado de desenvolvimento. Assim como na área de moda/design (e como os leigos comparam os estudantes de Webdesign), também vivemos num mundo de tendências, e atualmente é difícil encontrar um site ou sistema recente que não use alguns destes conceitos. Entre eles, permanecer com a navegação visível em toda a aplicação."
 ---
 
-# CSS Position Sticky
-
 Estamos passando por mais uma tendência no nosso mercado de desenvolvimento. Assim como na área de moda/design (e como os leigos comparam os estudantes de Webdesign), também vivemos num mundo de tendências, e atualmente é difícil encontrar um site ou sistema recente que não use alguns destes conceitos. Entre eles, permanecer com a navegação visível em toda a aplicação.
 
 Nos últimos anos, diversas soluções baseadas em Javascript foram criadas e agora podemos ver uma luz no fim do túnel, pois será possível utilizar apenas CSS para resolver este problema. Palmas!
