@@ -1,0 +1,313 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>CSS Position Sticky - Como utilizar? &#8211; morethings.io</title>
+<meta name="description" content="Estamos passando por mais uma tendência no nosso mercado de desenvolvimento. Assim como na área de moda/design (e como os leigos comparam os estudantes de Webdesign), também vivemos num mundo de tendências, e atualmente é difícil encontrar um site ou sistema recente que não use alguns destes conceitos. Entre eles, permanecer com a navegação visível em toda a aplicação.">
+<meta name="keywords" content="">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.morethings.io/images/posts/luiztiago/sticky.jpg">
+
+<meta name="twitter:title" content="CSS Position Sticky - Como utilizar?">
+<meta name="twitter:description" content="Estamos passando por mais uma tendência no nosso mercado de desenvolvimento. Assim como na área de moda/design (e como os leigos comparam os estudantes de Webdesign), também vivemos num mundo de tendências, e atualmente é difícil encontrar um site ou sistema recente que não use alguns destes conceitos. Entre eles, permanecer com a navegação visível em toda a aplicação.">
+<meta name="twitter:creator" content="@morethingsio">
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS Position Sticky - Como utilizar?">
+<meta property="og:description" content="Estamos passando por mais uma tendência no nosso mercado de desenvolvimento. Assim como na área de moda/design (e como os leigos comparam os estudantes de Webdesign), também vivemos num mundo de tendências, e atualmente é difícil encontrar um site ou sistema recente que não use alguns destes conceitos. Entre eles, permanecer com a navegação visível em toda a aplicação.">
+<meta property="og:url" content="http://www.morethings.io/css/css-position-sticky-como-utilizar">
+<meta property="og:site_name" content="morethings.io">
+<meta property="og:image" content="http://images.luiztiago.com/mt.png">
+<meta property="og:type" content="website">
+
+<meta name="google-site-verification" content="uvPVqBq23eyYbMxC3O2qGYrJOJCSY7n6QNcJZcYzpyw">
+
+
+<link rel="canonical" href="http://www.morethings.io/css/css-position-sticky-como-utilizar">
+<link href="http://www.morethings.io/feed.xml" type="application/atom+xml" rel="alternate" title="morethings.io Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://www.morethings.io/assets/css/main.min.css">
+<!-- Webfonts -->
+<script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://www.morethings.io/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://www.morethings.io/images/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://www.morethings.io/images/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://www.morethings.io/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.morethings.io/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.morethings.io/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.morethings.io/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post" itemscope itemtype="http://schema.org/WebPage">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop" itemscope itemtype="http://schema.org/SiteNavigationElement">
+	    <ul>
+	        <li><a href="http://www.morethings.io" title="Inicio">Inicio</a></li>
+	        
+			<li>
+				
+					<a href="http://www.morethings.io/about">Sobre</a>
+				
+			</li>
+	        
+			<li>
+				
+					<a href="http://www.morethings.io/posts">Posts</a>
+				
+			</li>
+	        
+	        <li><a href="http://www.morethings.io/feed.xml" title="Atom/RSS feed">Feed</a></li>
+	        
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+
+
+<header class="masthead" itemscope itemtype="http://schema.org/Organization">
+	<div class="wrap">
+		<h1 class="site-title animated fadeIn"><a href="http://www.morethings.io">morethings.io</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">More things about HTML/JS/CSS</h2>
+	</div>
+</header><!-- /.masthead -->
+
+
+<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <img src="http://www.morethings.io/images/posts/luiztiago/sticky.jpg" class="entry-feature-image" alt="CSS Position Sticky - Como utilizar?" itemprop="image">
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <span class="entry-tags"></span>
+        
+          <h1 class="entry-title" itemprop="headline">CSS Position Sticky - Como utilizar?</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        <img src="http://www.morethings.io/images/bio-photo.jpg" alt="Luiz Tiago photo" class="author-photo">
+        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://www.morethings.io/about" title="About Luiz Tiago" itemprop="url"><i class="icon-user"></i> Luiz Tiago</a></span></span>
+        <span class="entry-date date published"><time datetime="2014-08-25T21:00:00Z" itemprop="datePublished"><i class="icon-calendar-empty"></i> August 25, 2014</time></span>
+        
+        <span class="entry-comments"><i class="icon-comment-alt"></i> <a href="#disqus_thread">Comment</a></span>
+      </footer>
+      <div class="entry-content" itemprop="description">
+        <h1 id="css-position-sticky">CSS Position Sticky</h1>
+
+<p>Estamos passando por mais uma tendência no nosso mercado de desenvolvimento. Assim como na área de moda/design (e como os leigos comparam os estudantes de Webdesign), também vivemos num mundo de tendências, e atualmente é difícil encontrar um site ou sistema recente que não use alguns destes conceitos. Entre eles, permanecer com a navegação visível em toda a aplicação.</p>
+
+<p>Nos últimos anos, diversas soluções baseadas em Javascript foram criadas e agora podemos ver uma luz no fim do túnel, pois será possível utilizar apenas CSS para resolver este problema. Palmas!</p>
+
+<p>Neste artigo iremos discutir sobre o <code>position: sticky</code>, a nova solução CSS para este problema. </p>
+
+<h2 id="qual-o-problema-atual">Qual o problema atual?</h2>
+
+<p>Todos nós já usamos propriedades bem incríveis, tais como: <code>position: fixed</code>, mas a tendência não é essa. A ideia é que quando o usuário rolar a página, em vez do menu sumir, ele vai ficar na posição fixed apenas quando atingir o topo da <em>viewport</em>. Como nosso público acessa muito por smartphones/tablets, isso vai ajudar a acessar coisas importantes como a busca, menu ou o link para voltar para a Home.</p>
+
+<p>Para conseguir isso, atualmente precisamos utilizar Javascript. Não quer dizer que isto seja ruim, mas na verdade, não deveríamos precisar utilizá-lo para algo tão simples, não é? E o pior é utilizarmos um eventListener para a rolagem da página, e alterar a posição do menu de acordo com a posição atual da janela. Especificamente, precisaríamos adicionar <code>top: 0</code> e <code>position: fixed</code> para o menu quando encostar no topo da <em>viewport</em>, e inverter, quando voltar para o início da página.</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">menu</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.menu&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">menuPosition</span> <span class="o">=</span> <span class="nx">menu</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">().</span><span class="nx">top</span><span class="p">;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;scroll&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">pageYOffset</span> <span class="o">&gt;=</span> <span class="nx">menuPosition</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">menu</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="s1">&#39;fixed&#39;</span><span class="p">;</span>
+        <span class="nx">menu</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="s1">&#39;0px&#39;</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">menu</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span><span class="p">;</span>
+        <span class="nx">menu</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>Para melhorar 10 centavos da situação, criaríamos uma classe no CSS com estes valores, e faríamos a manipulação desta classe, mas mesmo assim precisaríamos usar JavaScript, como este exemplo abaixo, clar, usando VanillaJS:</p>
+
+<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">menu</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.menu&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">menuPosition</span> <span class="o">=</span> <span class="nx">menu</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">().</span><span class="nx">top</span><span class="p">;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;scroll&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">pageYOffset</span> <span class="o">&gt;=</span> <span class="nx">menuPosition</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">menu</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;menu-fixed&#39;</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">menu</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;menu-fixed&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h2 id="e-o-sticky">E o sticky?</h2>
+
+<p>Inicialmente, vamos usar como literatura a própria documentação da W3C:</p>
+
+<p><em>The box position is calculated according to the normal flow (this is called the position in normal flow). Then the box is offset relative to its flow root and containing block and in all cases, including table elements, does not affect the position of any following boxes. When a box B is stickily positioned, the position of the following box is calculated as though B were not offset. The effect of ‘position: sticky’ on table elements is the same as for ‘position: relative’.</em></p>
+
+<p>Podemos dizer que o <code>position: sticky</code> é um posicionamento híbrido entre <code>position: relative</code> e <code>position: fixed</code>. O elemento é tratado como <code>relative</code> até que cruza um limite especificado, e neste ponto ele é tratado como <code>fixed</code>. Por exemplo:</p>
+
+<div class="highlight"><pre><code class="css"><span class="nf">#one</span> <span class="p">{</span>
+  <span class="k">position</span><span class="o">:</span> <span class="n">sticky</span><span class="p">;</span> 
+  <span class="k">top</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Ele ficará como relativo desde que o elemento rolar na viewport até ficar com menos que 10px do topo. Então, ele vai interpretar como sendo <code>position: fixed</code> com <code>top: 10px</code> desde que a viewport seja <em>scrollada</em> até passar este valor.</p>
+
+<p>Parece confuso mas é bem mais simples do que parece. Isto já é usado em alguns lugares, como no índice alfabético de alguns smartphones, como por exemplo iOS e Android, onde o aparece no cabeçalho a letra “A” desde que o primeiro registro visível inicie com a letra “A”. Quando o primeiro item visível começar com “B”, este cabeçalho vai se tornar o título do “B”, até que o primeiro inicie com “C” e assim sucessivamente.</p>
+
+<ul>
+  <li><a href="http://jsfiddle.net/daker/ecpTw/light/">Link para demo</a>, from <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">MDN</a>.</li>
+</ul>
+
+<iframe width="100%" height="300" src="http://jsfiddle.net/daker/ecpTw/embedded/result,html,css,js/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h2 id="suporte-e-polyfills">Suporte e Polyfills</h2>
+
+<p>O suporte para isto ainda é bem fraco. Para verificar os detalhes, pode verificar a propriedade no <a href="http://caniuse.com/#feat=css-sticky">caniuse</a> ou na lista resumida abaixo:</p>
+
+<ul>
+  <li><strong>Firefox 26+</strong> Suportado desde que altere o valor de <code>css.sticky.enabled</code> para <code>true</code> em  <a href="about:config">about:config</a>.</li>
+  <li><strong>Chrome 23+</strong> Suportado habilitando a flag <code>experimental Web Platform features</code> em <a href="chrome://flags">chrome://flags</a>.</li>
+  <li><strong>Safari 6.1+</strong> Suportado usando o prefixo -webkit no valor <code>-webkit-sticky</code></li>
+  <li><em>*Internet Explorer</em> HAHAHAHAHAHAHAH, poderia ser diferente? No support! Vê o <a href="http://status.modern.ie/positionsticky">link no “Modern.IE”</a> e chora!</li>
+</ul>
+
+<p>Quanto aos polyfills, podemos escolher entre alguns já criados:</p>
+
+<ul>
+  <li><a href="https://github.com/filamentgroup/fixed-sticky">fixed-sticky</a> by the Filament Group (requires jQuery)</li>
+  <li><a href="https://github.com/matthewp/position--sticky-">position–sticky-</a> by Matthew Phillips (Uses Modernizr for detection)</li>
+  <li><a href="http://philipwalton.github.io/polyfill/demos/position-sticky/">position: sticky</a>, part of Philip Walton’s Polyfill.js library</li>
+  <li><a href="http://codepen.io/FWeinb/pen/xLakC">position: sticky CodePen demo</a> by Fabrice Weinberg (requires jQuery)</li>
+  <li><a href="http://wd.dizaina.net/en/scripts/stickyfill/">Stickyfill</a> by Oleg Korsunsky (IE9+)</li>
+</ul>
+
+        
+          <aside class="entry-related">
+            <h4>Referências</h4>
+            <ul>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" alt="CSS position" title="CSS position">CSS position</a>
+                
+                  - MDN
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://dev.w3.org/csswg/css-position/#sticky-positioning" alt="CSS Position" title="CSS Position">CSS Position</a>
+                
+                  - w3.org
+                
+              </li>
+              
+              <li itemprop="mentions" itemscope itemtype="http://schema.org/Thing">
+                <a itemprop="url" href="http://www.sitepoint.com/css-position-sticky-introduction-polyfills/?utm_source=CSS-Weekly&utm_campaign=Issue-124&utm_medium=email" alt="CSS position: sticky – Introduction and Polyfills" title="CSS position: sticky – Introduction and Polyfills">CSS position: sticky – Introduction and Polyfills</a>
+                
+                  - Sitepoint
+                
+              </li>
+              
+            </ul>
+          </aside>
+        
+        <div id="disqus_thread"></div><!-- /#disqus_thread -->
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://www.morethings.io/css/bootstrap-como-customiza-lo-sem-ferir-os-principios-do-css" class="btn" title="Bootstrap: como customizá-lo sem ferir os princípios do CSS">Previous article</a>
+      
+      
+    </nav><!-- /.pagination -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2014 - morethings.io</span>
+<div class="social-icons">
+	<a href="http://twitter.com/morethingsio" title="Luiz Tiago on Twitter" target="_blank"><i class="icon-twitter icon-2x"></i></a>
+	<a href="http://facebook.com/morethings.io" title="Luiz Tiago on Facebook" target="_blank"><i class="icon-facebook icon-2x"></i></a>
+	
+	
+	
+	
+	
+	<a href="http://github.com/luiztiago/morethings.io" title="Luiz Tiago on Github" target="_blank"><i class="icon-github icon-2x"></i></a>
+	
+</div><!-- /.social-icons -->
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://www.morethings.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://www.morethings.io/assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31914656-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    
+
+    var disqus_shortname = 'morethingsio'; // required: replace example with your forum shortname
+    var disqus_url = 'http://www.morethings.io/css/css-position-sticky-como-utilizar/';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</body>
+</html>
